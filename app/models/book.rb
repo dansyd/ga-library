@@ -16,5 +16,5 @@
 #
 
 class Book < ActiveRecord::Base
-  belongs_to :reservation
+  has_many :reservation
 end

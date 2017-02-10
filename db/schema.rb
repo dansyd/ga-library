@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20170209234454) do
   enable_extension "plpgsql"
 
   create_table "books", force: :cascade do |t|
-    t.integer  "isbn"
+    t.string   "isbn"
     t.string   "title"
     t.string   "author"
     t.string   "publisher"
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20170209234454) do
 
   create_table "requests", force: :cascade do |t|
     t.integer  "user_id"
-    t.text     "content"
+    t.string   "isbn"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 20170209234454) do
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.boolean  "admin",           default: false
-    t.string   "class"
+    t.string   "course"
     t.string   "email"
     t.string   "password_digest"
     t.datetime "created_at",                      null: false
