@@ -1,14 +1,8 @@
-<%= form_for @song do |f| %>
-
-
-<fieldset class="labels">
-  <%= f.label :isbn %>
-  <%= f. :artist_id, Artist.pluck(:name, :id), :include_blank => true %>
-</fieldset>
+<%= form_for @book do |f| %>
 
 <fieldset class="labels">
   <%= f.label :isbn %>
-  <%= f.url_field :isbn,  %>
+  <%= f.url_field :isbn  %>
 </fieldset>
 
 <fieldset>
