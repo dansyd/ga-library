@@ -1,0 +1,14 @@
+<%= form_for @book do |f| %>
+
+<fieldset class="labels">
+  <%= f.label :isbn %>
+  <%= f.url_field :isbn  %>
+</fieldset>
+
+<fieldset>
+  <label></label>
+  <%= f.submit 'Add' %>
+</fieldset>
+
+
+  <% end %>

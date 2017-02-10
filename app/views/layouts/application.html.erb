@@ -9,8 +9,11 @@
 <body>
 
   <nav>
-    <%= link_to "Home", root_path %>
     <ul>
+      <li><%= link_to "Home", root_path %></li>
+      <li><%= link_to "All Books", books_path %></li>
+
+
       <% if @current_user.present? %>
       <% if @current_user.admin? %>
 
@@ -20,10 +23,9 @@
 
       <li><%= link_to "Logout", login_path, :method => 'delete' %></li>
 
-      <li><%= link_to "Welcome #{@current_user.name}!", user_path(@current_user.id)%></li>
+      <li><%= link_to "Welcome #{@current_user.name}!", dashboard_path %></li>
 
       <% else %>
-
       <li><%= link_to "Sign up", new_user_path %></li>
       <li><%= link_to "Sign in", login_path %></li>
       <% end %>
