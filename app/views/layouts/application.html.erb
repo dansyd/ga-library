@@ -20,7 +20,7 @@
 
       <li><%= link_to "Logout", login_path, :method => 'delete' %></li>
 
-      <li><%= link_to "Welcome #{@current_user.name}!", user_path(@current_user.id)%></li>
+      <li><%= link_to "Welcome #{@current_user.name}!", dashboard_path %></li>
 
       <% else %>
 

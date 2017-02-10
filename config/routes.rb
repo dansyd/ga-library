@@ -46,6 +46,8 @@ Rails.application.routes.draw do
   resources :reservations
   resources :requests
 
+  get '/dashboard' => 'users#show'
+
   get '/login' => 'session#new'
   post '/login' => 'session#create'
   delete '/login' => 'session#destroy'
