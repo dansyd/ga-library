@@ -13,6 +13,6 @@
 #
 
 class Reservation < ActiveRecord::Base
-  has_one :book
+  belongs_to :book
   belongs_to :user
 end

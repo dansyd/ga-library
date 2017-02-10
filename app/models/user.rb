@@ -15,6 +15,7 @@
 class User < ActiveRecord::Base
   has_many :reservations
   has_many :requests
+  has_many :reserved_books, :through => :reservations, :source => :book
 
   has_secure_password
   validates :email, :presence => true, :uniqueness => true
