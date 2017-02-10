@@ -1,0 +1,20 @@
+<%= form_for @song do |f| %>
+
+
+<fieldset class="labels">
+  <%= f.label :isbn %>
+  <%= f. :artist_id, Artist.pluck(:name, :id), :include_blank => true %>
+</fieldset>
+
+<fieldset class="labels">
+  <%= f.label :isbn %>
+  <%= f.url_field :isbn,  %>
+</fieldset>
+
+<fieldset>
+  <label></label>
+  <%= f.submit 'Add', :class => 'btn btn-primary' %>
+</fieldset>
+
+
+  <% end %>
