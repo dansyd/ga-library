@@ -1,0 +1,7 @@
+<% if @current_user.present? %>
+  <% if @current_user.admin? %>
+  <%= render 'admin' %>
+  <% else %>
+  <%= render 'student' %>
+  <% end %>
+  <% end %>
