@@ -47,6 +47,7 @@ Rails.application.routes.draw do
   resources :requests
 
   get '/dashboard' => 'users#show'
+  post '/pages/create' => 'pages#create'
 
   get '/login' => 'session#new'
   post '/login' => 'session#create'
