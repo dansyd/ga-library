@@ -40,7 +40,7 @@
 Rails.application.routes.draw do
   get 'session/new'
 
-  root :to=> 'pages#index'
+  root :to=> 'books#index'
   resources :users, :only => [:new, :create, :update, :index]
   resources :books
   resources :reservations
