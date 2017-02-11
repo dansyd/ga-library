@@ -32,6 +32,9 @@
 #                  PATCH  /requests/:id(.:format)          requests#update
 #                  PUT    /requests/:id(.:format)          requests#update
 #                  DELETE /requests/:id(.:format)          requests#destroy
+#        dashboard GET    /dashboard(.:format)             users#show
+#         borrowed GET    /borrowed(.:format)              users#borrowed
+#         wishlist GET    /wishlist(.:format)              users#wishlist
 #            login GET    /login(.:format)                 session#new
 #                  POST   /login(.:format)                 session#create
 #                  DELETE /login(.:format)                 session#destroy
@@ -40,14 +43,16 @@
 Rails.application.routes.draw do
   get 'session/new'
 
-  root :to=> 'pages#index'
+  root :to=> 'books#index'
   resources :users, :only => [:new, :create, :update, :index]
   resources :books
   resources :reservations
   resources :requests
 
-  get '/dashboard' => 'users#show'
-  post '/pages/create' => 'pages#create'
+  get '/dashboard' => 'users#dashboard'
+  post '/dashboard/request' => 'users#request'
+  get '/borrowed' => 'users#borrowed'
+  get '/wishlist' => 'users#wishlist'
 
   get '/login' => 'session#new'
   post '/login' => 'session#create'
