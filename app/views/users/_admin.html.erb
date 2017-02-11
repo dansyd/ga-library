@@ -1,0 +1,10 @@
+<h1>Admin Dashboard</h1>
+
+<%= tabs_tag do |tab| %>
+  <%= tab.requests 'Requests', dashboard_path %>
+  <%= tab.borrowed 'Borrowed', borrowed_path %>
+  <%= tab.wishlist 'Wishlist', wishlist_path %>
+<% end %>
+
+
+<%#tabs %>

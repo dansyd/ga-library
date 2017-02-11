@@ -32,6 +32,9 @@
 #                  PATCH  /requests/:id(.:format)          requests#update
 #                  PUT    /requests/:id(.:format)          requests#update
 #                  DELETE /requests/:id(.:format)          requests#destroy
+#        dashboard GET    /dashboard(.:format)             users#show
+#         borrowed GET    /borrowed(.:format)              users#borrowed
+#         wishlist GET    /wishlist(.:format)              users#wishlist
 #            login GET    /login(.:format)                 session#new
 #                  POST   /login(.:format)                 session#create
 #                  DELETE /login(.:format)                 session#destroy
@@ -47,6 +50,8 @@ Rails.application.routes.draw do
   resources :requests
 
   get '/dashboard' => 'users#show'
+  get '/borrowed' => 'users#borrowed'
+  get '/wishlist' => 'users#wishlist'
 
   get '/login' => 'session#new'
   post '/login' => 'session#create'

@@ -4,8 +4,8 @@
 #
 #  id              :integer          not null, primary key
 #  name            :string
-#  admin           :boolean          default("false")
-#  class           :string
+#  admin           :boolean          default(FALSE)
+#  course          :string
 #  email           :string
 #  password_digest :string
 #  created_at      :datetime         not null

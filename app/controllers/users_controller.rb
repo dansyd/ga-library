@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   before_action :check_if_logged_in, :only => [:edit, :update]
-  before_action :check_if_admin, :only => [:index]
+  before_action :check_if_admin, :only => [:index, :borrowed, :wishlist]
 
   def index
     @users = User.all
@@ -11,8 +11,16 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  def show
+  def dashboard #show
     @user = @current_user
+  end
+
+  def borrowed
+    @users = User.all
+  end
+
+  def wishlist
+
   end
 
   def create
