@@ -1,0 +1,17 @@
+<% if @current_user %>
+
+  <% if @current_user.admin %>
+
+    <% if available_books(books).count > 0 %>
+      <%= button_to 'Delete', book_path(available_books(books).first), :method => 'delete', :data => { :confirm => "Are you sure?" } %>
+    <% else %>
+      <%= button_to 'Delete', nil, :disabled => true %>
+    <% end %>
+
+  <% else %>
+    <!-- Now it only gets the book id of the first available copy. Will need to implement a queue if not available  -->
+    <%= button_to 'Reserve', reservations_path(:reservation => {:action => 'create', :user_id => @current_user.id, :book_id => available_books(books).first, :date_requested => Date.today.to_s}), :method=>:post  %>
+
+  <% end %>
+
+<% end %>

@@ -25,6 +25,10 @@ gem 'thor', '0.19.4'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+gem 'tabs_on_rails'
+gem 'tabulous'
+gem 'api-ai-ruby'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
