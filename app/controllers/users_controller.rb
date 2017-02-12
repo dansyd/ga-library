@@ -16,12 +16,16 @@ class UsersController < ApplicationController
 
   def search
     search = params[:search]
-    @book_info = {}
-
+    @book_info = []
     if $gr_client.search_books(search).results.work.include?(:best_book)
-      @book_info = $gr_client.search_books(search).results.work.best_book
+      w = $gr_client.search_books(search).results.work
+      w.best_book.description = $gr_client.book(w.best_book.id).description
+      @book_info.push(w.best_book)
     else
-      @book_info = $gr_client.search_books(search).results.work.first().best_book
+      $gr_client.search_books(search).results.work.each do |w|
+        w.best_book.description = $gr_client.book(w.best_book.id).description
+        @book_info.push(w.best_book)
+      end
     end
 
     render :dashboard
@@ -29,6 +33,11 @@ class UsersController < ApplicationController
 
   def make_request
     @request = Request.create(user_id: @current_user.id, isbn: $gr_client.book(params[:id]).isbn13)
+    redirect_to dashboard_path
+  end
+
+  def cancel_request
+    @request = Request.find(params[:id]).destroy
     redirect_to dashboard_path
   end
 

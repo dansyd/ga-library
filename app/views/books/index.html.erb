@@ -1,24 +1,14 @@
 <h1>List of books</h1>
 
 <ul>
-  <% @books.group_by(&:isbn).each do |key, grouped_books| %>
+  <% @books.group_by(&:isbn).each do |isbn, books| %>
     <li>
-      <%= image_tag grouped_books.first.img_url %>
-      <p><%= link_to grouped_books.first.title, grouped_books.first %></p>
-      <p><%= grouped_books.first.author %></p>
-      <p><%= grouped_books.first.date_published.strftime('%d %B %Y') %></p>
-      <p>Copies: <%= grouped_books.count %>, <%= grouped_books.select{ |book| book.status == 'available'}.count %> available</p>
-      <% if @current_user %>
-        <% if @current_user.admin %>
-          <% if grouped_books.select{ |book| book.status == 'available'}.count > 0 %>
-            <%= button_to 'Delete', book_path(grouped_books.select{ |book| book.status == 'available'}.first), :method => 'delete', :data => { :confirm => "Are you sure?" } %>
-          <% else %>
-            <%= button_to 'Delete', nil, :disabled => true %>
-          <% end %>
-        <% else %>
-          <%= button_to 'Reserve' %>
-        <% end %>
-      <% end %>
+      <%= image_tag books.first.img_url %>
+      <p><%= link_to books.first.title, books.first %></p>
+      <p><%= books.first.author %></p>
+      <p><%= books.first.date_published.strftime('%d %B %Y') %></p>
+      <p>Copies: <%= books.count %>,  <%= available_books(books).count %> available</p>
+      <%= render :partial => 'book_options', :locals => {:books => books} %>
     </li>
   <% end %>
 </ul>

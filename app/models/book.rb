@@ -18,4 +18,7 @@
 class Book < ActiveRecord::Base
   has_many :reservation
 
+  def available_books(books)
+    books.select{ |book| book.status == 'available'}
+  end
 end
