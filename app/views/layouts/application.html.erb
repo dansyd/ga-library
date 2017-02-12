@@ -18,17 +18,19 @@
         <% end %>
         <li><%= link_to "Logout", login_path, :method => 'delete' %></li>
         <li><%= link_to "Welcome #{@current_user.name}!", dashboard_path %></li>
-        <% if request.path.start_with?('/dashboard') %>
-          <ul>
-            <li><a href="/dashboard">Requests</a></li>
-            <li><a href="/dashboard/borrowed">Borrowed</a></li>
-            <li><a href="/dashboard/wishlist">Wishlist</a></li>
-          </ul>
-          <!-- </%= tabs_tag do |tab| %>
-            </%= tab.requests 'Requests', dashboard_path %>
-            </%= tab.borrowed 'Borrowed', dashboard_borrowed_path %>
-            </%= tab.wishlist 'Wishlist', dashboard_wishlist_path %>
-          </% end %> -->
+        <% if @current_user.admin? %>
+          <% if request.path.start_with?('/dashboard') %>
+            <ul>
+              <li><a href="/dashboard">Requests</a></li>
+              <li><a href="/dashboard/borrowed">Borrowed</a></li>
+              <li><a href="/dashboard/wishlist">Wishlist</a></li>
+            </ul>
+            <!-- </%= tabs_tag do |tab| %>
+              </%= tab.requests 'Requests', dashboard_path %>
+              </%= tab.borrowed 'Borrowed', dashboard_borrowed_path %>
+              </%= tab.wishlist 'Wishlist', dashboard_wishlist_path %>
+            </% end %> -->
+          <% end %>
         <% end %>
       <% else %>
         <li><%= link_to "Sign up", new_user_path %></li>
