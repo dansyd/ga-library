@@ -12,35 +12,24 @@ class UsersController < ApplicationController
   end
 
   def dashboard
-    client = Goodreads::Client.new(api_key: "B9TgZYn2L64aiU19hRCbcA", api_secret: "edAr3fihaNqeLg1u7Fw0ii1CHhs9fhTo78Ehm16hoJk")
-
-    @borrowed_books = []
-    Reservation.where({user: @current_user}).each do |reservation|
-      @borrowed_books.push([Book.where(id: reservation.book).first().title, reservation.date_due])
-    end
-
-    @requests = []
-    Request.where({user: @current_user}).each do |request|
-      @requests.push(client.book_by_isbn(request.isbn).title)
-    end
-
-    search = params[:search]
-    # ask joel
-    @book_info = {:id => nil}
-    if search
-      if client.search_books(search).results.work.include?(:best_book)
-        @book_info = client.search_books(search).results.work.best_book
-      else
-        @book_info = client.search_books(search).results.work.first().best_book
-      end
-    end
   end
 
-  def request
-    client = Goodreads::Client.new(api_key: "B9TgZYn2L64aiU19hRCbcA", api_secret: "edAr3fihaNqeLg1u7Fw0ii1CHhs9fhTo78Ehm16hoJk")
-    @request = Request.create
-    @request.update user_id: @current_user.id, isbn: client.book(params[:id]).isbn13
-    redirect_to :root
+  def search
+    search = params[:search]
+    @book_info = {}
+
+    if $gr_client.search_books(search).results.work.include?(:best_book)
+      @book_info = $gr_client.search_books(search).results.work.best_book
+    else
+      @book_info = $gr_client.search_books(search).results.work.first().best_book
+    end
+
+    render :dashboard
+  end
+
+  def make_request
+    @request = Request.create(user_id: @current_user.id, isbn: $gr_client.book(params[:id]).isbn13)
+    redirect_to dashboard_path
   end
 
   def borrowed
@@ -76,10 +65,6 @@ class UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:name, :class, :email, :password, :password_confirmation)
-  end
-
-  def request_params
-    params.require(:request).permit(:user_id, :isbn)
   end
 
 end

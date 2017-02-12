@@ -50,7 +50,8 @@ Rails.application.routes.draw do
   resources :requests
 
   get '/dashboard' => 'users#dashboard'
-  post '/dashboard/request' => 'users#request'
+  get '/dashboard/search' => 'users#search'
+  post '/dashboard/request' => 'users#make_request'
   get '/borrowed' => 'users#borrowed'
   get '/wishlist' => 'users#wishlist'
 
