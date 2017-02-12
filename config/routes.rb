@@ -43,13 +43,15 @@
 Rails.application.routes.draw do
   get 'session/new'
 
-  root :to=> 'pages#index'
+  root :to=> 'books#index'
   resources :users, :only => [:new, :create, :update, :index]
   resources :books
   resources :reservations
   resources :requests
 
-  get '/dashboard' => 'users#show'
+  get '/dashboard' => 'users#dashboard'
+  get '/dashboard/search' => 'users#search'
+  post '/dashboard/request' => 'users#make_request'
   get '/borrowed' => 'users#borrowed'
   get '/wishlist' => 'users#wishlist'
 
