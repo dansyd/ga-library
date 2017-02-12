@@ -29,6 +29,7 @@ gem 'tabs_on_rails'
 
 gem 'tabulous'
 
+gem "algoliasearch-rails"
 
 # Use Unicorn as the app server
 # gem 'unicorn'
