@@ -1,4 +1,7 @@
 <div class="sign">
+  <div class="form-group-wrapper">
+
+  <h1>Sign up</h1>
 
 <% if @user.errors.any?  %>
 <ol>
@@ -31,7 +34,9 @@
 </div>
 
 
-<%= f.submit "Join"%>
+<%= f.submit "Join", :class => 'sign-button'%>
 
 <% end  %>
+<div class="signup-redirect">Have an account? <%= link_to "Sign in", login_path %>
+</div>
 </div>

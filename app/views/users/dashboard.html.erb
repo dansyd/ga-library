@@ -16,13 +16,11 @@
   <%= submit_tag "Search" %>
 <% end %>
 
-<div>
-</div>
-
 <% if params[:search] %>
 <script>
+
   <% @book_info.each do |b| %>
-    $('div').append('<p><%= b %></p><%= button_to 'Request', "/dashboard/request?id=#{b[:id]}", method: :post %>')
+    $('body').append('<div id=request-book><%= image_tag b.image_url %><p class="pine"><%= b.title %></p><p><%= b.description %> </p><%= button_to 'Request', "/dashboard/request?id=#{b[:id]}", method: :post %></div>')
   <% end %>
 </script>
 <% end %>
