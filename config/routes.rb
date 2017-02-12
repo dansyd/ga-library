@@ -52,6 +52,7 @@ Rails.application.routes.draw do
   get '/dashboard' => 'users#dashboard'
   get '/dashboard/search' => 'users#search'
   post '/dashboard/request' => 'users#make_request'
+  post '/dashboard/cancel' => 'users#cancel_request'
   get '/borrowed' => 'users#borrowed'
   get '/wishlist' => 'users#wishlist'
 

@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
 
   def submitted_requests
     requests.map do |r|
-      $gr_client.book_by_isbn(r.isbn).title
+      [r.id, $gr_client.book_by_isbn(r.isbn).title]
     end
   end
 end
