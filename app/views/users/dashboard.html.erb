@@ -1,0 +1,28 @@
+<h2>Borrowed Books</h2>
+<% @current_user.borrowed_books.each do |book| %>
+  <p>Book title: <%= book[0] %></p>
+  <p>Due date: <%= book[1] %></p>
+<% end %>
+
+<h2>Requested Books</h2>
+<% @current_user.submitted_requests.each do |request| %>
+  <p><%= request[1] %></p>
+  <%= button_to 'Cancel Request', "/dashboard/cancel?id=#{request[0]}", method: :post %>
+<% end %>
+
+<h2>Request a book</h2>
+<%= form_tag dashboard_search_path, :method => "get" do %>
+  <%= text_field_tag :search, params[:search], placeholder: "E.g. tractatus logico philosophicus", required: true %>
+  <%= submit_tag "Search" %>
+<% end %>
+
+<div>
+</div>
+
+<% if params[:search] %>
+<script>
+  <% @book_info.each do |b| %>
+    $('div').append('<p><%= b %></p><%= button_to 'Request', "/dashboard/request?id=#{b[:id]}", method: :post %>')
+  <% end %>
+</script>
+<% end %>

@@ -11,8 +11,34 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  def dashboard #show
-    @user = @current_user
+  def dashboard
+  end
+
+  def search
+    search = params[:search]
+    @book_info = []
+    if $gr_client.search_books(search).results.work.include?(:best_book)
+      w = $gr_client.search_books(search).results.work
+      w.best_book.description = $gr_client.book(w.best_book.id).description
+      @book_info.push(w.best_book)
+    else
+      $gr_client.search_books(search).results.work.each do |w|
+        w.best_book.description = $gr_client.book(w.best_book.id).description
+        @book_info.push(w.best_book)
+      end
+    end
+
+    render :dashboard
+  end
+
+  def make_request
+    @request = Request.create(user_id: @current_user.id, isbn: $gr_client.book(params[:id]).isbn13)
+    redirect_to dashboard_path
+  end
+
+  def cancel_request
+    @request = Request.find(params[:id]).destroy
+    redirect_to dashboard_path
   end
 
   def borrowed
@@ -49,4 +75,5 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :class, :email, :password, :password_confirmation)
   end
+
 end
