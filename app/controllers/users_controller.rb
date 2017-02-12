@@ -12,6 +12,8 @@ class UsersController < ApplicationController
   end
 
   def dashboard
+    @reserved_books = Book.where({status: 'reserved'})
+    @requests = Request.all
   end
 
   def search
@@ -42,11 +44,22 @@ class UsersController < ApplicationController
   end
 
   def borrowed
-    @users = User.all
+    @borrowed_books = Book.where({status: 'borrowed'})
   end
 
   def wishlist
+    @wishlist = Favorite.all
+  end
 
+  def add_to_wishlist
+    Favorite.create(isbn: params[:isbn])
+    Request.find(params[:id]).destroy
+    redirect_to :back
+  end
+
+  def cancel_favorite
+    Favorite.find(params[:id]).destroy
+    redirect_to :back
   end
 
   def create
