@@ -27,6 +27,9 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'tabs_on_rails'
 gem 'tabulous'
+
+gem "algoliasearch-rails"
+
 gem 'api-ai-ruby'
 
 # Use Unicorn as the app server

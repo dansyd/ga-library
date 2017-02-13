@@ -7,37 +7,47 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <nav>
-    <ul>
-      <li><%= link_to "Home", root_path %></li>
-      <li><%= link_to "All Books", books_path %></li>
-
-      <% if @current_user.present? %>
-        <% if @current_user.admin? %>
-          <li><%= link_to "Add Books", new_book_path %></li>
-        <% end %>
-        <li><%= link_to "Logout", login_path, :method => 'delete' %></li>
-        <li><%= link_to "Welcome #{@current_user.name}!", dashboard_path %></li>
-        <% if @current_user.admin? %>
-          <% if request.path.start_with?('/dashboard') %>
-            <ul>
-              <li><a href="/dashboard">Requests</a></li>
-              <li><a href="/dashboard/borrowed">Borrowed</a></li>
-              <li><a href="/dashboard/wishlist">Wishlist</a></li>
-            </ul>
-            <!-- </%= tabs_tag do |tab| %>
-              </%= tab.requests 'Requests', dashboard_path %>
-              </%= tab.borrowed 'Borrowed', dashboard_borrowed_path %>
-              </%= tab.wishlist 'Wishlist', dashboard_wishlist_path %>
-            </% end %> -->
-          <% end %>
-        <% end %>
-      <% else %>
-        <li><%= link_to "Sign up", new_user_path %></li>
-        <li><%= link_to "Sign in", login_path %></li>
+  <section class="navigation">
+    <div class="logo"><%= link_to root_path  do %>
+      <%= image_tag 'https://68.media.tumblr.com/9f6680419a5c1b3716427a42172f8a81/tumblr_ol9k3cuFMh1sjludfo1_400.png'%>
       <% end %>
-    </ul>
-  </nav>
+    </div>
+
+    <div class="nav-container">
+      <nav>
+        <div class="nav-mobile"><a id="nav-toggle" href="#!"><span></span></a></div>
+
+        <ul class="nav-list">
+          <li><%= link_to "Library", root_path %></li>
+          <li><%= link_to "All Books", books_path %></li>
+
+
+          <% if @current_user.present? %>
+          <% if @current_user.admin? %>
+
+          <li><%= link_to "Add Books", new_book_path %></li>
+          <li class="dropdown"><%= link_to "Dashboard", '#' %>
+            <ul class="nav-dropdown">
+              <li><%= link_to "Requests", dashboard_path %></li>
+              <li><%= link_to "Borrowed", dashboard_borrowed_path %> </li>
+              <li><%= link_to "Wishlist", dashboard_wishlist_path %> </li>
+            </ul>
+          </li>
+          <%else %>
+          <li><%= link_to "Dashboard", dashboard_path %></li>
+          <% end %>
+          <li><%= link_to "Logout", login_path, :method => 'delete' %></li>
+
+
+          <% else %>
+          <li><%= link_to "Sign up", new_user_path %></li>
+          <li><%= link_to "Sign in", login_path %></li>
+          <% end %>
+        </ul>
+      </nav>
+    </div>
+</section>
+
 
 <%= yield %>
 
