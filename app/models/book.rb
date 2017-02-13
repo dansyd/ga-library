@@ -16,9 +16,18 @@
 #
 
 class Book < ActiveRecord::Base
+
+  include AlgoliaSearch
+  algoliasearch do
+    attribute :isbn, :title, :author, :img_url
+    searchableAttributes ['title', 'author', 'unordered(isbn)', 'unordered(img_url)']
+  end
+
   has_many :reservation
 
   def available_books(books)
     books.select{ |book| book.status == 'available'}
   end
+
+
 end

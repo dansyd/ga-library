@@ -12,4 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require algolia/v3/algoliasearch.min
+//= require autocomplete
 //= require_tree .
