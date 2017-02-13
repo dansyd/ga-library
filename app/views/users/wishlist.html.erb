@@ -1,1 +1,5 @@
 <h1>Wishlist</h1>
+<% @wishlist.each do |favorite| %>
+  <p><%= favorite.isbn %></p>
+  <%= button_to 'Cancel item', "/dashboard/wishlist/cancel?id=#{favorite.id}", method: :post %>
+<% end %>

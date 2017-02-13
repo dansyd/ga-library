@@ -1,7 +1,8 @@
 $(document).ready(function(){
-
 $('.dropdown').click(function (e) {
-    e.preventDefault();
+    // e.preventDefault();
+    e.stopPropagation();
+
   $('.nav-dropdown').toggle();
 });
 

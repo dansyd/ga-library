@@ -26,10 +26,16 @@
           <% if @current_user.admin? %>
 
           <li><%= link_to "Add Books", new_book_path %></li>
-
-          <% end %>
+          <li class="dropdown"><%= link_to "Dashboard", '#' %>
+            <ul class="nav-dropdown">
+              <li><%= link_to "Requests", dashboard_path %></li>
+              <li><%= link_to "Borrowed", dashboard_borrowed_path %> </li>
+              <li><%= link_to "Wishlist", dashboard_wishlist_path %> </li>
+            </ul>
+          </li>
+          <%else %>
           <li><%= link_to "Dashboard", dashboard_path %></li>
-
+          <% end %>
           <li><%= link_to "Logout", login_path, :method => 'delete' %></li>
 
 
@@ -41,6 +47,7 @@
       </nav>
     </div>
 </section>
+
 
 <%= yield %>
 

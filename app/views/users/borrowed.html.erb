@@ -1,1 +1,12 @@
 <h1>Borrowed</h1>
+
+<h2>All Borrowed Books</h2>
+<% @borrowed_books.each do |book| %>
+  <p><%= book.title %></p>
+  <% book.reservation.each do |r| %>
+    <p>date_borrowed: <%= r.date_borrowed %></p>
+    <p>date returned: <%= r.date_due %></p>
+  <% end %>
+<% end %>
+
+<strong>might need date returned</strong>
