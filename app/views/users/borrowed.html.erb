@@ -1,11 +1,12 @@
 <h1>Borrowed</h1>
-
+<!-- add user name -->
 <h2>All Borrowed Books</h2>
 <% @borrowed_books.each do |book| %>
   <p><%= book.title %></p>
-  <% book.reservation.each do |r| %>
-    <p>date_borrowed: <%= r.date_borrowed %></p>
-    <p>date returned: <%= r.date_due %></p>
+  <% r = book.reservation.where.not(date_borrowed: nil).order(:date_borrowed).last %>
+  <% if r %>
+    <p>borrowed date: <%= r.date_borrowed %></p>
+    <p>date due: <%= r.date_due %></p>
   <% end %>
 <% end %>
 

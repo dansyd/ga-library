@@ -3,13 +3,14 @@
 <h2>Borrowing Requests</h2>
 <% reserved_books.each do |book| %>
   <p>Book title: <%= book.title %></p>
+  <%= button_to 'Delivered', "/dashboard/reservation/borrowed?id=#{book.id}", method: :post %>
 <% end %>
 
 <h2>All Requested Books</h2>
 <% requests.each do |request| %>
-  <p><%= request.isbn %></p>
-  <%= button_to 'Cancel Request', "/dashboard/request/cancel?id=#{request.id}", method: :post %>
-  <%= button_to 'Add to wishlist', "/dashboard/wishlist/add?isbn=#{request.isbn}&id=#{request.id}", method: :post %>
+  <p><%= request[:info] %></p>
+  <%= button_to 'Cancel Request', "/dashboard/request/cancel?id=#{request[:id]}", method: :post %>
+  <%= button_to 'Add to wishlist', "/dashboard/wishlist/add?isbn=#{request[:isbn]}&id=#{request[:id]}", method: :post %>
 <% end %>
 
 <%#tabs %>
