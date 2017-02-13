@@ -25,7 +25,7 @@
 <% if params[:search] %>
 <script>
   <% @book_info.each do |b| %>
-    $('div').append('<p><%= b %></p><%= button_to 'Request', "/dashboard/request?id=#{b[:id]}", method: :post %>')
+    $('div').append('<%= image_tag b[:picture] %></p><p><%= b[:info].title %></p><p><%= b[:info].isbn_13 %></p><p><%= b[:info].description %></p><p><%= b[:info].authors %></p><%= button_to 'Request', "/dashboard/request?isbn=#{b[:info].isbn_13}", method: :post %>')
   <% end %>
 </script>
 <% end %>

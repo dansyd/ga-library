@@ -30,7 +30,8 @@ Reservation.destroy_all
 
 user2.reservations.create :book_id => book2.id, :date_requested => '2017-02-09', :date_borrowed => '2017-02-10', :date_due => '2017-02-20'
 
-user3.reservations.create :book_id => book2.id, :date_requested => '2017-02-10', :date_borrowed => '', :date_due => ''
+user3.reservations.create :book_id => book3.id, :date_requested => '2017-02-10', :date_borrowed => '', :date_due => ''
+
 
 Request.destroy_all
 
