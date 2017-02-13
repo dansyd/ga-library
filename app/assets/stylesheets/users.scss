@@ -203,106 +203,163 @@ nav ul li ul li a {
   max-width: 960px;
   height: 100%;
 
+  .form-group {
+    padding: 0.5em 0;
+    // border: 1px solid green;
+    width: 300px;
+    margin: 0 auto;
+    line-height: 30px;
 
-
-.form-group {
-  padding: 0.5em 0;
-  // border: 1px solid green;
-  width: 300px;
-  margin: 0 auto;
-  line-height: 30px;
-
-}
-.form-group-wrapper {
-  margin: 50px auto;
-  max-width: 312px;
-  height: 100%;
-  h1 {
-    font-family: 'Fira Sans Extra Condensed', sans-serif;
   }
-}
-.sign-button {
-  width: 310px;
-  height: 40px;
-  display: block;
-  margin: 1.5em auto;
-  background: #fa4542;
-  border: none;
-  color: white;
-  font-weight: bold;
-  font-size: 15px;
-  border-radius: 3px;
-  box-shadow: 0px 3px 0px #a20101;
-}
+  .form-group-wrapper {
+    margin: 50px auto;
+    max-width: 312px;
+    height: 100%;
+    h1 {
+      font-family: 'Fira Sans Extra Condensed', sans-serif;
+    }
+  }
+  .sign-button {
+    width: 310px;
+    height: 40px;
+    display: block;
+    margin: 1.5em auto;
+    background: #fa4542;
+    border: none;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    border-radius: 3px;
+    box-shadow: 0px 3px 0px #a20101;
+  }
 
-.sign-button:hover {
-  cursor: pointer;
-}
+  .sign-button:hover {
+    cursor: pointer;
+  }
 
-form {
-  width: 300px;
+  form {
+    width: 300px;
 
-}
+  }
 
-.form-control {
-  width: 300px;
-  height: 40px;
-  margin: 0 auto;
-  padding-left: 0.5em;
-  font-size: 15px;
+  .form-control {
+    width: 300px;
+    height: 40px;
+    margin: 0 auto;
+    padding-left: 0.5em;
+    font-size: 15px;
 
-}
+  }
 
-.form-control:focus {
-  outline: 2px solid #ffc107;
-}
+  .form-control:focus {
+    outline: 2px solid #ffc107;
+  }
 
-.signup-redirect {
-  // border: 1px solid grey;
-  font-size: 15px;
-  color: black;
-  text-align: center;
-  margin: 30px auto;
-  a {
+  .signup-redirect {
+    // border: 1px solid grey;
+    font-size: 15px;
     color: black;
+    text-align: center;
+    margin: 30px auto;
+    a {
+      color: black;
+    }
+    a:hover {
+      color: #fa4542;
+    }
   }
-  a:hover {
-    color: #fa4542;
-  }
-}
 
-label {
-  min-width: 85px;
-  display: inline-block;
-  text-align: left;
-}
+  label {
+    min-width: 85px;
+    display: inline-block;
+    text-align: left;
+  }
 }
 
 // individual book show page /////////////////////////////////////
 .card-wrapper {
+  border: 1px solid green;
   max-width: 700px;
   background: white;
-  box-shadow: 0 2px 20px 0 rgba(0,0,0,.2);
+  border-top: 5px solid red;
+  // box-shadow: 0 2px 20px 0 rgba(0,0,0,.2);
   padding: 3em;
   margin: 100px auto;
-}
-.card-top {
-  display: flex;
-  max-width: 700px;
-  background: white;
+  img {
+    width: 150px;
+    height: 200px;
+    border: 1px solid green;
 
-  overflow: hidden;
-    @media screen and (max-width: 800px) {
-    width: 100%;
   }
+  .card-top {
+    display: flex;
+    max-width: 700px;
+    background: white;
+    overflow: hidden;
+    border: 1px solid green;
+  }
+    .button {
+      border: 1px solid red;
+
+
+    }
+    .card-left {
+      padding: 1em;
+
+    }
+
 }
 
-img {
-  width: 150px;
-  height: 200px;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// DAN
+.notification {
+  display: inline-block;
+  background-color: white;
+  color: black;
+  padding: 5px;
+  margin: 0 5px;
+  border-radius: 100%;
+  width: 15px;
+  height: 15px;
+  line-height: 1em;
+  text-align: center;
 }
 
-.card-left {
-  padding: 1em;
+.featured {
+  background-color: #e4f1fe;
+  padding: 1em 5em;
+  img {
+    display: inline-block;
+    vertical-align: middle;
+    width: 18%
+  }
+  .slider {
+    padding: 0 2em;
 
+    button {
+      width: 20px;
+      height: 50px;
+    }
+  }
+  .featured-info {
+    display: inline-block;
+    vertical-align: middle;
+    width: 65%;
+    margin-left: 5%;
+  }
 }

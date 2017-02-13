@@ -1,5 +1,22 @@
 <h1>WELCOME TO GA LIBRARY</h1>
 
+<section class="featured">
+  <h2>Latest books</h2>
+  <div class="slider">
+      <% @books.order(:created_at).limit(3).each do |book| %>
+        <div class="slider_item">
+          <%= image_tag book.img_url %><div class="featured-info">
+            <p><%= book.title %></p>
+            <p><%= book.author %></p>
+            <p><%= book.description %></p>
+          </div>
+        </div>
+      <% end %>
+  </div>
+</section>
+
+<br><br>
+
 <div class="aa-input-container" id="aa-input-container">
     <input type="search" id="aa-search-input" class="aa-input-search" placeholder="Search for books" name="search" autocomplete="off" />
     <svg class="aa-input-icon" viewBox="654 -372 1664 1664">
@@ -8,13 +25,12 @@
 </div>
 
 <ul>
-  <% @books.group_by(&:isbn).each do |isbn, books| %>
+  <% @books.order(:title).group_by(&:isbn).each do |isbn, books| %>
     <li class="book">
       <%= image_tag books.first.img_url %>
       <p><%= link_to books.first.title, books.first %></p>
       <p><%= books.first.author %></p>
       <p><%= books.first.date_published.strftime('%d %B %Y') %></p>
-      <p>Copies: <%= books.count %>,  <%= available_books(books).count %> available</p>
       <%= render :partial => 'book_options', :locals => {:books => books} %>
     </li>
   <% end %>

@@ -2,11 +2,19 @@
 
 <h2>Borrowing Requests</h2>
 <% reserved_books.each do |book| %>
+  <% r = book.reservation.where(date_borrowed: nil).order(:created_at).first %>
+  <p><%= users.find(r.user_id).name %>
   <p>Book title: <%= book.title %></p>
   <%= button_to 'Delivered', "/dashboard/reservation/borrowed?id=#{book.id}", method: :post %>
 <% end %>
 
-<h2>All Requested Books</h2>
+<h2>Waitlist</h2>
+<% waitlist.each do |book| %>
+  <p>Book title: <%= book.isbn %></p>
+<% end %>
+
+
+<h2>New Book Requests</h2>
 <% requests.each do |request| %>
   <p><%= request[:info] %></p>
   <%= button_to 'Cancel Request', "/dashboard/request/cancel?id=#{request[:id]}", method: :post %>

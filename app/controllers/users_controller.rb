@@ -13,6 +13,9 @@ class UsersController < ApplicationController
 
   def dashboard
     @reserved_books = Book.where({status: 'reserved'})
+    @users = User.all
+    @waitlist = PendingItem.all
+    @student_waitlist = PendingItem.where({user_id: @current_user.id})
     @requests = Request.all.map do |r|
       {info: $gr_client.search_books(r.isbn).results.work.best_book, id: r.id, isbn: r.isbn}
     end
@@ -54,10 +57,12 @@ class UsersController < ApplicationController
 
   def borrowed
     @borrowed_books = Book.where({status: 'borrowed'})
+    @users = User.all
   end
 
   def deliver
     Book.find(params[:id]).update({status: 'borrowed'})
+    Book.find(params[:id]).reservation.where({date_borrowed: nil}).first.update({date_borrowed: Date.today.to_s, date_due: (Date.today + 10).to_s})
     redirect_to :back
   end
 

@@ -6,6 +6,11 @@
   <p>Due date: <%= book[1] %></p>
 <% end %>
 
+<h2>Waitlist</h2>
+<% waitlist.each do |book| %>
+  <p>Book title: <%= book.isbn %></p>
+<% end %>
+
 <h2>Requested Books</h2>
 <% @current_user.submitted_requests.each do |request| %>
   <p><%= request[1] %></p>
