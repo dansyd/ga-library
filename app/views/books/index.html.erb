@@ -32,7 +32,7 @@
       <%= image_tag books.first.img_url %>
       <p><%= link_to books.first.title, books.first %></p>
       <p><%= books.first.author %></p>
-      <p><%= books.first.date_published.strftime('%d %B %Y') %></p>
+      <p><%= books.first.date_published %></p>
       <%= render :partial => 'book_options', :locals => {:books => books} %>
     </li>
   <% end %>

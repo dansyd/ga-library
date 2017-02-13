@@ -12,12 +12,13 @@ class UsersController < ApplicationController
   end
 
   def dashboard
+    @books = Book.all
     @reserved_books = Book.where({status: 'reserved'})
     @users = User.all
     @waitlist = PendingItem.all
     @student_waitlist = PendingItem.where({user_id: @current_user.id})
     @requests = Request.all.map do |r|
-      {info: $gr_client.search_books(r.isbn).results.work.best_book, id: r.id, isbn: r.isbn}
+      {info: GoogleBooks.search(r.isbn).first, id: r.id, isbn: r.isbn}
     end
   end
 
@@ -68,7 +69,7 @@ class UsersController < ApplicationController
 
   def wishlist
     @wishlist = Favorite.all.map do |f|
-      {info: GoogleBooks.search(f.isbn), id: f.id}
+      {info: GoogleBooks.search(f.isbn).first, id: f.id}
     end
   end
 
