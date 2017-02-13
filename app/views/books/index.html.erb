@@ -24,6 +24,8 @@
     </svg>
 </div>
 
+
+
 <ul>
   <% @books.order(:title).group_by(&:isbn).each do |isbn, books| %>
     <li class="book">
