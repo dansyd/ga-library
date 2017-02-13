@@ -270,3 +270,39 @@ label {
   display: inline-block;
   text-align: left;
 }
+
+
+
+
+
+
+
+// DAN
+.notification {
+  display: inline-block;
+  background-color: white;
+  color: black;
+  padding: 5px;
+  margin: 0 5px;
+  border-radius: 100%;
+  width: 15px;
+  height: 15px;
+  line-height: 1em;
+  text-align: center;
+}
+
+.featured {
+  background-color: red;
+  padding: 1em 5em;
+  img {
+    display: inline-block;
+    vertical-align: middle;
+    width: 15%
+  }
+  .featured-info {
+    display: inline-block;
+    vertical-align: middle;
+    width: 80%;
+    margin-left: 5%;
+  }
+}
