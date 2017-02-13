@@ -2,6 +2,8 @@
 
 <h2>Borrowing Requests</h2>
 <% reserved_books.each do |book| %>
+  <% r = book.reservation.where(date_borrowed: nil).order(:created_at).first %>
+  <p><%= users.find(r.user_id).name %>
   <p>Book title: <%= book.title %></p>
   <%= button_to 'Delivered', "/dashboard/reservation/borrowed?id=#{book.id}", method: :post %>
 <% end %>
