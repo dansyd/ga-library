@@ -32,6 +32,7 @@ user2.reservations.create :book_id => book2.id, :date_requested => '2017-02-09',
 
 user3.reservations.create :book_id => book3.id, :date_requested => '2017-02-10', :date_borrowed => '', :date_due => ''
 
+
 Request.destroy_all
 
 user4.requests.create :isbn => '9781491901946'

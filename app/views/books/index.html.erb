@@ -1,4 +1,4 @@
-<h1>List of books</h1>
+<h1>WELCOME TO GA LIBRARY</h1>
 
 <div class="aa-input-container" id="aa-input-container">
     <input type="search" id="aa-search-input" class="aa-input-search" placeholder="Search for books" name="search" autocomplete="off" />
@@ -9,7 +9,7 @@
 
 <ul>
   <% @books.group_by(&:isbn).each do |isbn, books| %>
-    <li>
+    <li class="book">
       <%= image_tag books.first.img_url %>
       <p><%= link_to books.first.title, books.first %></p>
       <p><%= books.first.author %></p>

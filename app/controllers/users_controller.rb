@@ -13,28 +13,37 @@ class UsersController < ApplicationController
 
   def dashboard
     @reserved_books = Book.where({status: 'reserved'})
-    @requests = Request.all
+    @requests = Request.all.map do |r|
+      {info: $gr_client.search_books(r.isbn).results.work.best_book, id: r.id, isbn: r.isbn}
+    end
   end
 
   def search
     search = params[:search]
-    @book_info = []
-    if $gr_client.search_books(search).results.work.include?(:best_book)
-      w = $gr_client.search_books(search).results.work
-      w.best_book.description = $gr_client.book(w.best_book.id).description
-      @book_info.push(w.best_book)
-    else
-      $gr_client.search_books(search).results.work.each do |w|
-        w.best_book.description = $gr_client.book(w.best_book.id).description
-        @book_info.push(w.best_book)
+    @book_info = GoogleBooks.search(search).map do |b|
+      if b.image_link || $gr_client.search_books(b.isbn_13).total_results == '0'
+        {info: b, picture: b.image_link
+        }
+      else
+        {info: b, picture: $gr_client.search_books(b.isbn_13).results.work.best_book.image_url
+        }
       end
     end
-
+    # if $gr_client.search_books(search).results.work.include?(:best_book)
+    #   w = $gr_client.search_books(search).results.work
+    #   w.best_book.description = $gr_client.book(w.best_book.id).description
+    #   @book_info.push(w.best_book)
+    # else
+    #   $gr_client.search_books(search).results.work.each do |w|
+    #     w.best_book.description = $gr_client.book(w.best_book.id).description
+    #     @book_info.push(w.best_book)
+    #   end
+    # end
     render :dashboard
   end
 
   def make_request
-    @request = Request.create(user_id: @current_user.id, isbn: $gr_client.book(params[:id]).isbn13)
+    @request = Request.create(user_id: @current_user.id, isbn: params[:isbn])
     redirect_to dashboard_path
   end
 
@@ -47,8 +56,15 @@ class UsersController < ApplicationController
     @borrowed_books = Book.where({status: 'borrowed'})
   end
 
+  def deliver
+    Book.find(params[:id]).update({status: 'borrowed'})
+    redirect_to :back
+  end
+
   def wishlist
-    @wishlist = Favorite.all
+    @wishlist = Favorite.all.map do |f|
+      {info: $gr_client.search_books(f.isbn).results.work.best_book, id: f.id}
+    end
   end
 
   def add_to_wishlist
