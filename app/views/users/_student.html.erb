@@ -1,14 +1,17 @@
 <h1>Student Dashboard</h1>
 
 <h2>Borrowed Books</h2>
-<% @current_user.borrowed_books.each do |book| %>
-  <p>Book title: <%= book[0] %></p>
-  <p>Due date: <%= book[1] %></p>
+<% @current_user.get_reservations.each do |r| %>
+  <p>Book title: <%= r.book.title %></p>
+  <p>Status: <%= r.book.status %></p>
+  <p>Due date: <%= r.date_due %></p>
 <% end %>
 
 <h2>Waitlist</h2>
-<% waitlist.each do |book| %>
-  <p>Book title: <%= book.isbn %></p>
+<% if waitlist %>
+  <% waitlist.each do |book| %>
+    <p>Book title: <%= book.isbn %></p>
+  <% end %>
 <% end %>
 
 <h2>Requested Books</h2>
