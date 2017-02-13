@@ -9,8 +9,10 @@
 <% end %>
 
 <h2>Waitlist</h2>
-<% waitlist.each do |book| %>
-  <p>Book title: <%= book.isbn %></p>
+<% if waitlist %>
+  <% waitlist.each do |book| %>
+    <p>Book title: <%= book.isbn %></p>
+  <% end %>
 <% end %>
 
 
