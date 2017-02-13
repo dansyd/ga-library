@@ -1,3 +1,4 @@
+<p>Copies: <%= books.count %>,  <%= available_books(books).count %> available</p>
 <% if @current_user %>
 
   <% if @current_user.admin %>
@@ -9,8 +10,12 @@
     <% end %>
 
   <% else %>
-    <!-- Now it only gets the book id of the first available copy. Will need to implement a queue if not available  -->
-    <%= button_to 'Reserve', reservations_path(:reservation => {:action => 'create', :user_id => @current_user.id, :book_id => available_books(books).first, :date_requested => Date.today.to_s}), :method=>:post  %>
+
+    <% if sort_books_by_status(books).first.status == 'available' %>
+      <%= button_to 'Reserve', reservations_path(:reservation => {:action => 'create', :user_id => @current_user.id, :book_id => sort_books_by_status(books).first, :date_requested => Date.today.to_s}), :method=>:post %>
+    <% else %>
+      <%= button_to 'Reserve', pending_items_path(:action => 'create', :user_id => @current_user.id, :isbn => sort_books_by_status(books).first.isbn, :date_requested => Time.now), :method=>:post %>
+    <% end %>
 
   <% end %>
 

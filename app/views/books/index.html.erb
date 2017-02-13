@@ -14,7 +14,6 @@
       <p><%= link_to books.first.title, books.first %></p>
       <p><%= books.first.author %></p>
       <p><%= books.first.date_published.strftime('%d %B %Y') %></p>
-      <p>Copies: <%= books.count %>,  <%= available_books(books).count %> available</p>
       <%= render :partial => 'book_options', :locals => {:books => books} %>
     </li>
   <% end %>

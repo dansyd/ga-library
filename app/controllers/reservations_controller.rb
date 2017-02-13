@@ -2,6 +2,9 @@ class ReservationsController < ApplicationController
 
   def create
     reservation = Reservation.new reservation_params
+    book = Book.find params[:reservation][:book_id]
+    book.status = 'reserved'
+    book.save
     if reservation.save
       flash[:create] = "Reservation created successfully"
     else
