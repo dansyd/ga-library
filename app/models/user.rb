@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
 
   has_secure_password
   validates :email, :presence => true, :uniqueness => true
-
+  
   def borrowed_books
     reservations.map do |r|
       [r.book.title, r.date_due]

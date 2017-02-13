@@ -67,6 +67,7 @@ Rails.application.routes.draw do
   post '/dashboard/wishlist/add' => 'users#add_to_wishlist'
   post '/dashboard/wishlist/cancel' => 'users#cancel_favorite'
   post '/dashboard/reservation/borrowed' => 'users#deliver'
+  post '/return' => 'reservations#return'
 
   get '/login' => 'session#new'
   post '/login' => 'session#create'
