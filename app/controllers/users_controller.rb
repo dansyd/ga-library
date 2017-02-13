@@ -68,7 +68,7 @@ class UsersController < ApplicationController
 
   def wishlist
     @wishlist = Favorite.all.map do |f|
-      {info: $gr_client.search_books(f.isbn).results.work.best_book, id: f.id}
+      {info: GoogleBooks.search(f.isbn), id: f.id}
     end
   end
 
