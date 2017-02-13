@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170213025446) do
+ActiveRecord::Schema.define(version: 20170213231958) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20170213025446) do
     t.string   "title"
     t.string   "author"
     t.string   "publisher"
-    t.date     "date_published"
+    t.string   "date_published"
     t.text     "description"
     t.string   "img_url"
     t.string   "status"
@@ -53,8 +53,8 @@ ActiveRecord::Schema.define(version: 20170213025446) do
   create_table "reservations", force: :cascade do |t|
     t.integer  "book_id"
     t.integer  "user_id"
-    t.date     "date_requested"
-    t.date     "date_borrowed"
+    t.datetime "date_requested"
+    t.datetime "date_borrowed"
     t.date     "date_due"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
