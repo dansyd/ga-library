@@ -6,7 +6,13 @@
   <%= button_to 'Delivered', "/dashboard/reservation/borrowed?id=#{book.id}", method: :post %>
 <% end %>
 
-<h2>All Requested Books</h2>
+<h2>Waitlist</h2>
+<% waitlist.each do |book| %>
+  <p>Book title: <%= book.isbn %></p>
+<% end %>
+
+
+<h2>New Book Requests</h2>
 <% requests.each do |request| %>
   <p><%= request[:info] %></p>
   <%= button_to 'Cancel Request', "/dashboard/request/cancel?id=#{request[:id]}", method: :post %>
