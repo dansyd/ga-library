@@ -3,6 +3,8 @@ $book-color-bg: lighten($color-bg, 20%);
 $book-color-border: lighten(#000, 85%);
 $book-border: 1px solid $book-color-border;
 
+$main-font: 'Lato', sans-serif;
+$card: #fafafa;
 
 * {
   // border: 1px solid red;
