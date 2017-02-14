@@ -26,14 +26,23 @@
 
 
 
-<ul>
+<ul class="bookwrap">
   <% @books.order(:title).group_by(&:isbn).each do |isbn, books| %>
-    <li class="book">
-      <%= image_tag books.first.img_url %>
-      <p><%= link_to books.first.title, books.first %></p>
-      <p><%= books.first.author %></p>
-      <p><%= books.first.date_published %></p>
+    <li>
+
+      <div class="book-image">
+        <%= image_tag books.first.img_url %>
+      </div>
+
+      <div class="side">
+        <p><%= link_to books.first.title, books.first %></p>
+        <p><%= books.first.author %></p>
+        <p><%= books.first.date_published %></p>
+      </div>
+
+      <div class="book-footer">
       <%= render :partial => 'book_options', :locals => {:books => books} %>
+      </div>
     </li>
   <% end %>
 </ul>
