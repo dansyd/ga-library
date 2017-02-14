@@ -1,10 +1,16 @@
-$color-bg: #fde3a7;
-$book-color-bg: lighten($color-bg, 20%);
-$book-color-border: lighten(#000, 85%);
-$book-border: 1px solid $book-color-border;
-
+// $color-bg: #fde3a7;
+// $book-color-bg: lighten($color-bg, 20%);
+// $book-color-border: lighten(#000, 85%);
+// $book-border: 1px solid $book-color-border;
+//
+$ga-red: rgb(237, 30, 59);
+$ga-yellow: rgb(251, 211, 51);
+$ga-black: rgb(0, 0, 0);
+$ga-grey: rgb(230, 247, 255);
 $main-font: 'Lato', sans-serif;
-$card: #fafafa;
+$main-spacing: 2em;
+$big-spacing: 4em;
+// $card: #fafafa;
 
 * {
   // border: 1px solid red;
