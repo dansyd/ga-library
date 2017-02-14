@@ -1,0 +1,84 @@
+// @import url('https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed');
+@import 'variables';
+
+// DAN
+.notification {
+  display: inline-block;
+  background-color: white;
+  color: black;
+  padding: 5px;
+  margin: 0 5px;
+  border-radius: 100%;
+  width: 15px;
+  height: 15px;
+  line-height: 1em;
+  text-align: center;
+}
+
+.featured {
+  background-color: $ga-grey;
+  padding: $big-spacing 5em;
+  img {
+    display: inline-block;
+    vertical-align: middle;
+    width: 18%
+  }
+  .slider {
+    padding: 0 2em;
+
+    button {
+      width: 20px;
+      height: 50px;
+    }
+  }
+  .featured-info {
+    display: inline-block;
+    vertical-align: middle;
+    width: 65%;
+    margin-left: 5%;
+  }
+}
+
+.bookwrap {
+	margin: 0 auto;
+	padding: 0;
+	max-width: 1680px;
+	padding: 10px;
+	border: 1px solid red;
+	list-style: none;
+	display: flex;
+	flex-wrap: wrap;
+  h3,p {
+    margin: 0 0 1em
+  }
+  .book-image {
+    height: 172px;
+    width: 130px;
+    margin: 10px 0;
+    border: 1px solid blue;
+    overflow: hidden;
+  }
+  .side {
+    border: 1px solid pink;
+  }
+  li {
+  	margin:10px 1%;
+  	padding:10px;
+  	border:1px solid green;
+  	display:inline-block;/* fallback */
+  	width:29%;/* fallback*/
+  	vertical-align:top;/* fallback*/
+  	display:flex;
+  	flex-direction:column;
+  	flex:1 0 29%;
+  	min-width:280px;/* doesn't work in ios so use media queries to go to one column */
+  }
+  .book-footer {
+  	margin-top:auto;
+    padding:10px;
+  }
+  .book-footer b {
+    float: right;
+  }
+
+}
