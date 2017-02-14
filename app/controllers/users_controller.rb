@@ -63,7 +63,7 @@ class UsersController < ApplicationController
 
   def deliver
     Book.find(params[:id]).update({status: 'borrowed'})
-    Book.find(params[:id]).reservation.where({date_borrowed: nil}).first.update({date_borrowed: Date.today.to_s, date_due: (Date.today + 10).to_s})
+    Book.find(params[:id]).reservation.where({date_borrowed: nil}).first.update({date_borrowed: Time.now.to_s, date_due: (Date.today + 10).to_s})
     redirect_to :back
   end
 

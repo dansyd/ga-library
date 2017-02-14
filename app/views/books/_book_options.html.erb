@@ -1,5 +1,6 @@
+
 <a>Copies: <%= books.count %>,  <%= available_books(books).count %> available</a>
-<% if @current_user %>
+<% if @current_user.present? %>
 
   <% if @current_user.admin %>
 
@@ -10,13 +11,17 @@
     <% end %>
 
   <% else %>
-
-    <% if sort_books_by_status(books).first.status == 'available' %>
-      <b><%= button_to 'Reserve', reservations_path(:reservation => {:action => 'create', :user_id => @current_user.id, :book_id => sort_books_by_status(books).first, :date_requested => Date.today.to_s}), :method=>:post %></b>
+    <% if @current_user.has_borrowed_this(books.first.isbn) %>
+      <p>You already borrowed this book</p>
+    <% elsif @current_user.has_reserved_this(books.first.isbn) %>
+      <p>You already reserved this book</p>
     <% else %>
-      <b><%= button_to 'Reserve', pending_items_path(:action => 'create', :user_id => @current_user.id, :isbn => sort_books_by_status(books).first.isbn, :date_requested => Time.now), :method=>:post %></b>
+      <% if sort_books_by_status(books).first.status == 'available' %>
+        <b><%= button_to 'Reserve', reservations_path(:reservation => {:action => 'create', :user_id => @current_user.id, :book_id => sort_books_by_status(books).first, :date_requested => Date.today.to_s}), :method=>:post %></b>
+      <% else %>
+        <b><%= button_to 'Reserve', pending_items_path(:action => 'create', :user_id => @current_user.id, :isbn => sort_books_by_status(books).first.isbn, :date_requested => Time.now), :method=>:post %></b>
+      <% end %>
     <% end %>
 
   <% end %>
-
 <% end %>

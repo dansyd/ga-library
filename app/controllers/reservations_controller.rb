@@ -15,13 +15,13 @@ class ReservationsController < ApplicationController
 
   def return
     isbn = Book.find(params[:id]).isbn
-    next_item = PendingItem.where({isbn: isbn}).order(:created_at)[0]
+    next_item = PendingItem.where({isbn: isbn}).order(:date_requested)[0]
     # loop through waitlist with isbn
     # get 1st by date
     # create reservation with book_id, user_id, dates
     # remove item from waitlist
     if next_item
-      Reservation.create({book_id: params[:id], user_id: next_item.user_id, date_requested: Date.today.to_s})
+      Reservation.create({book_id: params[:id], user_id: next_item.user_id, date_requested: next_item.date_requested})
       Book.find(params[:id]).update({status: 'reserved'})
       PendingItem.find(next_item.id).destroy
     else
