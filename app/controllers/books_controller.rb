@@ -3,10 +3,15 @@ class BooksController < ApplicationController
     @books = Book.all
   end
 
+  def borrowed
+    @borrowed_books = Book.where({status: 'borrowed'})
+    @users = User.all
+  end
+
   def create
     isbn = params[:isbn]
     b = GoogleBooks.search(isbn).first
-    if isbn.length == 13 && b.title
+    if isbn.length == 13 && b != nil && b.title
       @book = Book.create({isbn: isbn,
                           title: b.title,
                           author: b.authors,
@@ -21,19 +26,14 @@ class BooksController < ApplicationController
     redirect_to :back
   end
 
-  def edit
-    @book = Book.find params[:id]
-  end
-
-  def update
-    book = Book.find params[:id]
-    book.update book_params
-
-    redirect_to book
-  end
-
   def show
     @book = Book.find params[:id]
+  end
+  
+  def deliver
+    Book.find(params[:id]).update({status: 'borrowed'})
+    Book.find(params[:id]).reservation.where({date_borrowed: nil}).first.update({date_borrowed: Time.now.to_s, date_due: (Date.today + 10).to_s})
+    redirect_to :back
   end
 
   def destroy
@@ -43,9 +43,17 @@ class BooksController < ApplicationController
   end
 
   def search
-    isbn = params[:isbn]
-    client = Goodreads::Client.new(api_key: "B9TgZYn2L64aiU19hRCbcA", api_secret: "edAr3fihaNqeLg1u7Fw0ii1CHhs9fhTo78Ehm16hoJk")
-    @book_info = client.book_by_isbn isbn
+    search = params[:search]
+    @book_info = GoogleBooks.search(search).map do |b|
+      if b.image_link || $gr_client.search_books(b.isbn_13).total_results == '0'
+        {info: b, picture: b.image_link
+        }
+      else
+        {info: b, picture: $gr_client.search_books(b.isbn_13).results.work.best_book.image_url
+        }
+      end
+    end
+    render 'users/dashboard'
   end
 
   private
