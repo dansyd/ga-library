@@ -1,0 +1,35 @@
+@import 'variables';
+
+// individual book show page /////////////////////////////////////
+.card-wrapper {
+  border: 1px solid green;
+  max-width: 700px;
+  background: white;
+  border-top: 5px solid red;
+  // box-shadow: 0 2px 20px 0 rgba(0,0,0,.2);
+  padding: 3em;
+  margin: 100px auto;
+  img {
+    width: 150px;
+    height: 200px;
+    border: 1px solid green;
+
+  }
+  .card-top {
+    display: flex;
+    max-width: 700px;
+    background: white;
+    overflow: hidden;
+    border: 1px solid green;
+  }
+    .button {
+      border: 1px solid red;
+
+
+    }
+    .card-left {
+      padding: 1em;
+
+    }
+
+}
