@@ -2,9 +2,10 @@
 @import 'variables';
 
 
-* {
-  // border: 1px solid red;
+html {
+  box-sizing: border-box;
 }
+
 
 body {
   margin: 0;
@@ -317,15 +318,6 @@ nav ul li ul li a {
 
 
 
-
-
-
-
-
-
-
-
-
 // DAN
 .notification {
   display: inline-block;
@@ -365,3 +357,48 @@ nav ul li ul li a {
 }
 
 //homepage book list //////////////////////////////////
+
+
+.bookwrap {
+	margin: 0 auto;
+	padding: 0;
+	max-width: 1680px;
+	padding: 10px;
+	border: 1px solid red;
+	list-style: none;
+	display: flex;
+	flex-wrap: wrap;
+  h3,p {
+    margin: 0 0 1em
+  }
+  .book-image {
+    height: 172px;
+    width: 130px;
+    margin: 10px 0;
+    border: 1px solid blue;
+    overflow: hidden;
+  }
+  .side {
+    border: 1px solid pink;
+  }
+  li {
+  	margin:10px 1%;
+  	padding:10px;
+  	border:1px solid green;
+  	display:inline-block;/* fallback */
+  	width:29%;/* fallback*/
+  	vertical-align:top;/* fallback*/
+  	display:flex;
+  	flex-direction:column;
+  	flex:1 0 29%;
+  	min-width:280px;/* doesn't work in ios so use media queries to go to one column */
+  }
+  .book-footer {
+  	margin-top:auto;
+    padding:10px;
+  }
+  .book-footer b {
+    float: right;
+  }
+
+}

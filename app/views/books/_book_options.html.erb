@@ -1,20 +1,20 @@
-<p>Copies: <%= books.count %>,  <%= available_books(books).count %> available</p>
+<a>Copies: <%= books.count %>,  <%= available_books(books).count %> available</a>
 <% if @current_user %>
 
   <% if @current_user.admin %>
 
     <% if available_books(books).count > 0 %>
-      <%= button_to 'Delete', book_path(available_books(books).first), :method => 'delete', :data => { :confirm => "Are you sure?" } %>
+      <b><%= button_to 'Delete', book_path(available_books(books).first), :method => 'delete', :data => { :confirm => "Are you sure?" } %></b>
     <% else %>
-      <%= button_to 'Delete', nil, :disabled => true %>
+      <b><%= button_to 'Delete', nil, :disabled => true %></b>
     <% end %>
 
   <% else %>
 
     <% if sort_books_by_status(books).first.status == 'available' %>
-      <%= button_to 'Reserve', reservations_path(:reservation => {:action => 'create', :user_id => @current_user.id, :book_id => sort_books_by_status(books).first, :date_requested => Date.today.to_s}), :method=>:post %>
+      <b><%= button_to 'Reserve', reservations_path(:reservation => {:action => 'create', :user_id => @current_user.id, :book_id => sort_books_by_status(books).first, :date_requested => Date.today.to_s}), :method=>:post %></b>
     <% else %>
-      <%= button_to 'Reserve', pending_items_path(:action => 'create', :user_id => @current_user.id, :isbn => sort_books_by_status(books).first.isbn, :date_requested => Time.now), :method=>:post %>
+      <b><%= button_to 'Reserve', pending_items_path(:action => 'create', :user_id => @current_user.id, :isbn => sort_books_by_status(books).first.isbn, :date_requested => Time.now), :method=>:post %></b>
     <% end %>
 
   <% end %>
