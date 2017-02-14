@@ -59,20 +59,22 @@ Rails.application.routes.draw do
   resources :requests
 
   get '/dashboard' => 'users#dashboard'
-  get '/dashboard/search' => 'users#search'
-  post '/dashboard/request' => 'users#make_request'
-  post '/dashboard/request/cancel' => 'users#cancel_request'
-  get '/dashboard/borrowed' => 'users#borrowed'
-  get '/dashboard/wishlist' => 'users#wishlist'
-  post '/dashboard/wishlist/add' => 'users#add_to_wishlist'
-  post '/dashboard/wishlist/cancel' => 'users#cancel_favorite'
-  post '/dashboard/reservation/borrowed' => 'users#deliver'
+
+  get '/dashboard/wishlist' => 'favorites#wishlist'
+  post '/dashboard/wishlist/add' => 'favorites#add_to_wishlist'
+  post '/dashboard/wishlist/cancel' => 'favorites#cancel_favorite'
+
+  get '/dashboard/search' => 'books#search'
+  get '/dashboard/borrowed' => 'books#borrowed'
+  post '/dashboard/reservation/borrowed' => 'books#deliver'
   post '/return' => 'reservations#return'
+
+  post '/dashboard/request' => 'requests#make_request'
+  post '/dashboard/request/cancel' => 'requests#cancel_request'
 
   get '/login' => 'session#new'
   post '/login' => 'session#create'
   delete '/login' => 'session#destroy'
-
 
   post '/pending_items' => 'pending_items#create'
 end
