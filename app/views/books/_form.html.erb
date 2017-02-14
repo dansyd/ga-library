@@ -1,14 +1,14 @@
-<%= form_for @book do |f| %>
+<% if flash[:error].present? %>
+  <p style="color: red"><%= flash[:error] %></p>
+<% end %>
 
-<fieldset class="labels">
-  <%= f.label :isbn %>
-  <%= f.url_field :isbn  %>
-</fieldset>
+<%= form_tag books_path, :method => "post" do |f| %>
+  <fieldset class="labels">
+    <%= label_tag :isbn_13 %>
+    <%= text_field_tag :isbn, params[:isbn], required: true %>
+  </fieldset>
 
-<fieldset>
-  <label></label>
-  <%= f.submit 'Add' %>
-</fieldset>
-
-
-  <% end %>
+  <fieldset>
+    <%= submit_tag 'Add' %>
+  </fieldset>
+<% end %>
