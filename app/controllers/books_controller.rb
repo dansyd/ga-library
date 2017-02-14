@@ -21,17 +21,6 @@ class BooksController < ApplicationController
     redirect_to :back
   end
 
-  # def create
-  #   book = Book.new book_params
-  #   if search_check = @book_info
-  #     song.save
-  #     redirect_to book
-  #   else
-  #     flash[:error] = "Invalid ISBN"
-  #     redirect_to new_book_path
-  #   end
-  # end
-
   def edit
     @book = Book.find params[:id]
   end
