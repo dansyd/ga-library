@@ -24,7 +24,7 @@
     border: 1px solid red;
   }
   .slider {
-    padding: 0 2em;
+    padding: 0 8em;
 
     button {
       width: 20px;
@@ -108,5 +108,20 @@
     b {
       float: right;
     }
+    input[type="submit"] {
+      background-color: white;
+      color: $ga-red;
+      border: 1px solid $ga-red;
+      box-shadow: none;
+
+      &:hover {
+        background-color: $ga-red;
+        color: white;
+        cursor: pointer;
+      }
+    }
   }
+
+
+
 }

@@ -1,1 +1,21 @@
 @import "variables";
+
+.no-books {
+  font-size: 1.8em;
+  color: lightgrey;
+  margin-bottom: $small-spacing;
+}
+
+.dashboard-section {
+  padding: $main-spacing;
+  text-align: center;
+}
+
+.dashboard-section form {
+  display: inline;
+}
+
+hr {
+  width: 50%;
+  border: 3px solid $ga-yellow;
+}

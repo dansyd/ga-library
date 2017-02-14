@@ -25,6 +25,7 @@ h1 {
 }
 
 h2 {
+  margin-bottom: $small-spacing;
   font-size: 2em;
   text-align: center;
 }
@@ -41,16 +42,25 @@ ul li {
 }
 
 button, input[type="submit"] {
-  background-color: white;
-  color: $ga-red;
-  border: 1px solid $ga-red;
+  background-color: $ga-red;
+  color: white;
+  border: 0;
   padding: $small-spacing;
+  box-shadow: 0px 3px 0px #a20101;
   border-radius: 3px;
-
   &:hover {
-    background-color: $ga-red;
-    color: white;
     cursor: pointer;
+  }
+}
+
+input[type="text"] {
+  width: 300px;
+  height: 40px;
+  margin: 0 auto;
+  padding-left: 0.5em;
+  font-size: 15px;
+  &:focus {
+    outline: 2px solid #ffc107;
   }
 }
 

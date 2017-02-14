@@ -17,6 +17,6 @@ $(document).ready(function(){
     this.classList.toggle("active");
   });
 
-  // $('.slider').slick({});
+  $('.slider').slick({});
 
 });
