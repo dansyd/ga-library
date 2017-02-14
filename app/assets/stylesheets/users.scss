@@ -20,7 +20,7 @@
 }
 
 .nav-container {
-  width: 1000px;
+  max-width: 960px;
   margin: 0 auto;
 }
 
@@ -109,23 +109,7 @@ nav ul li ul li a {
   .nav-dropdown {
     position: static;
   }
-}
 
-@media screen and (min-width: 800px) {
-  .nav-list {
-    display: block !important;
-  }
-}
-
-#nav-toggle {
-  position: absolute;
-  left: 18px;
-  top: 22px;
-  cursor: pointer;
-  padding: 10px 35px 16px 0;
-}
-
-@media screen and (min-width: 800px) {
   .nav-list {
     display: block !important;
   }
