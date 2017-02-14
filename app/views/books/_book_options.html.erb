@@ -1,5 +1,9 @@
 
-<a>Copies: <%= books.count %>,  <%= available_books(books).count %> available</a>
+<br>
+<p id="copies">  <%= available_books(books).count %>/ <%= books.count %> copies <% if available_books(books).count > 0 %>
+  <span id="available">available<span></p>
+    <%else %><p><span id="unavailable">Unavailable</span></p>
+      <%end %>
 <% if @current_user.present? %>
 
   <% if @current_user.admin %>
@@ -13,9 +17,9 @@
   <% else %>
 
     <% if @current_user.has_borrowed_this(books.first.isbn) %>
-      <p>You already borrowed this book</p>
+      <br><p class="out">You already borrowed this book</p>
     <% elsif @current_user.has_reserved_this(books.first.isbn) %>
-      <p>You already reserved this book</p>
+      <br><p class="out">You already reserved this book</p>
     <% else %>
       <% if sort_books_by_status(books).first.status == 'available' %>
         <b><%= button_to 'Reserve', reservations_path(:reservation => {:action => 'create', :user_id => @current_user.id, :book_id => sort_books_by_status(books).first, :date_requested => Date.today.to_s}), :method=>:post %></b>

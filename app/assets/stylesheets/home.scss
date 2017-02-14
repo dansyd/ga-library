@@ -16,12 +16,12 @@
 }
 
 .featured {
-  background-color: $ga-grey;
   padding: $big-spacing 5em;
   img {
     display: inline-block;
     vertical-align: middle;
-    width: 18%
+    width: 15%;
+    border: 1px solid red;
   }
   .slider {
     padding: 0 2em;
@@ -34,11 +34,13 @@
   .featured-info {
     display: inline-block;
     vertical-align: middle;
-    width: 6
-
-    5%;
+    width: 60%;
     margin-left: 5%;
   }
+}
+
+.aa-input-container {
+  margin-left: 1em;
 }
 
 .bookwrap {
@@ -46,7 +48,7 @@
 	padding: 0;
 	max-width: 1680px;
 	padding: 10px;
-	border: 1px solid red;
+	// border: 1px solid red;
 	list-style: none;
 	display: flex;
 	flex-wrap: wrap;
@@ -54,33 +56,57 @@
     margin: 0 0 1em
   }
   .book-image {
-    height: 172px;
-    width: 130px;
+    height: 173px;
+    width: 132px;
     margin: 10px 0;
-    border: 1px solid blue;
     overflow: hidden;
+    // border: 1px solid blue;
   }
   .side {
-    border: 1px solid pink;
+    // border: 1px solid pink;
+    text-transform: uppercase;
+    color: #777777;
+
+    a {
+      text-decoration: none;
+      font-weight: bold;
+      color: black;
+    }
   }
   li {
-  	margin:10px 1%;
-  	padding:10px;
-  	border:1px solid green;
-  	display:inline-block;/* fallback */
-  	width:29%;/* fallback*/
-  	vertical-align:top;/* fallback*/
-  	display:flex;
-  	flex-direction:column;
-  	flex:1 0 29%;
-  	min-width:280px;/* doesn't work in ios so use media queries to go to one column */
+  	margin: 10px 1%;
+  	padding: $main-spacing;
+  	// border: 1px solid green;
+  	display: inline-block;
+  	width: 29%;
+  	vertical-align: top;
+  	display: flex;
+  	flex-direction: column;
+  	flex: 1 0 29%;
+  	min-width: 280px;
+    box-shadow: $card-boxshadow;
   }
   .book-footer {
-  	margin-top:auto;
-    padding:10px;
+  	margin-top: auto;
+    p {
+      color: #777777;
+      display: inline;
+      #available {
+        font-weight: bold;
+        color: #82CA9C;
+        text-transform: uppercase;
+        padding-left: 1em;
+      }
+      #unavailable {
+        @extend #available;
+        color: #F69679;
+      }
+    }
+    .out {
+      font-style: italic;
+    }
+    b {
+      float: right;
+    }
   }
-  .book-footer b {
-    float: right;
-  }
-
 }

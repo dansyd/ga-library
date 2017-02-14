@@ -41,15 +41,18 @@ ul li {
 }
 
 button, input[type="submit"] {
-  background-color: $ga-red;
-  color: white;
-  border: 0;
+  background-color: white;
+  color: $ga-red;
+  border: 1px solid $ga-red;
   padding: $small-spacing;
-  box-shadow: 0px 3px 0px #a20101;
   border-radius: 3px;
+
+  &:hover {
+    background-color: $ga-red;
+    color: white;
+    cursor: pointer;
+  }
 }
-
-
 
 
 //nav bar /////////////////////////////////////////////////
@@ -108,7 +111,7 @@ nav ul li a:not(:only-child):after {
           content: '  ▾'; }
 
 nav ul li ul li {
-        min-width: 190px; }
+          min-width: 190px; }
 
 nav ul li ul li a {
           padding: 15px;
@@ -172,34 +175,38 @@ nav ul li ul li a {
   cursor: pointer;
   padding: 10px 35px 16px 0;
 }
-  #nav-toggle span,
-  #nav-toggle span:before,
-  #nav-toggle span:after {
-    cursor: pointer;
-    border-radius: 1px;
-    height: 5px;
-    width: 35px;
-    background: #ffffff;
-    position: absolute;
-    display: block;
-    content: '';
-    transition: all 300ms ease-in-out;
-  }
-  #nav-toggle span:before {
-    top: -10px;
-  }
-  #nav-toggle span:after {
-    bottom: -10px;
-  }
-  #nav-toggle.active span {
-    background-color: transparent;
-  }
-    #nav-toggle.active span:before, #nav-toggle.active span:after {
-      top: 0;
-    }
-    #nav-toggle.active span:before {
-      transform: rotate(45deg);
-    }
-    #nav-toggle.active span:after {
-      transform: rotate(-45deg);
-    }
+#nav-toggle span,
+#nav-toggle span:before,
+#nav-toggle span:after {
+  cursor: pointer;
+  border-radius: 1px;
+  height: 5px;
+  width: 35px;
+  background: #ffffff;
+  position: absolute;
+  display: block;
+  content: '';
+  transition: all 300ms ease-in-out;
+}
+#nav-toggle span:before {
+  top: -10px;
+}
+#nav-toggle span:after {
+  bottom: -10px;
+}
+
+#nav-toggle.active span {
+  background-color: transparent;
+}
+
+#nav-toggle.active span:before, #nav-toggle.active span:after {
+  top: 0;
+}
+
+#nav-toggle.active span:before {
+  transform: rotate(45deg);
+}
+
+#nav-toggle.active span:after {
+  transform: rotate(-45deg);
+}
