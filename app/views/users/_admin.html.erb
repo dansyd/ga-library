@@ -2,23 +2,28 @@
 
 <h2>Borrowing Requests</h2>
 <% reserved_books.each do |book| %>
-  <% r = book.reservation.where(date_borrowed: nil).order(:created_at).first %>
+  <% r = book.reservation.where(date_borrowed: nil).order(:date_requested).first %>
   <p><%= users.find(r.user_id).name %>
   <p>Book title: <%= book.title %></p>
+  <p>Book isbn: <%= book.isbn %></p>
   <%= button_to 'Delivered', "/dashboard/reservation/borrowed?id=#{book.id}", method: :post %>
 <% end %>
 
 <h2>Waitlist</h2>
 <% if waitlist %>
   <% waitlist.each do |book| %>
-    <p>Book title: <%= book.isbn %></p>
+    <p>User: <%= users.find(book.user_id).name  %>
+    <p>Book title: <%= books.where(isbn: book.isbn).first.title %></p>
+    <p>Book isbn: <%= book.isbn %></p>
   <% end %>
 <% end %>
 
 
 <h2>New Book Requests</h2>
 <% requests.each do |request| %>
-  <p><%= request[:info] %></p>
+  <p><%= request[:info].title %></p>
+  <p><%= request[:info].authors %></p>
+  <p><%= request[:info].image_link %></p>
   <%= button_to 'Cancel Request', "/dashboard/request/cancel?id=#{request[:id]}", method: :post %>
   <%= button_to 'Add to wishlist', "/dashboard/wishlist/add?isbn=#{request[:isbn]}&id=#{request[:id]}", method: :post %>
 <% end %>

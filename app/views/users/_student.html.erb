@@ -10,7 +10,7 @@
 <h2>Waitlist</h2>
 <% if waitlist %>
   <% waitlist.each do |book| %>
-    <p>Book title: <%= book.isbn %></p>
+    <p>Book title: <%= books.where({isbn: book.isbn}).first.title %></p>
   <% end %>
 <% end %>
 

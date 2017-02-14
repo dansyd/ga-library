@@ -1,18 +1,30 @@
-<h1>book show page</h1>
+<div class="card-wrapper">
+  <div class="card-top">
+    <div class="card-image"><%= image_tag @book.img_url %></div>
+    <div class="card-left">
+      <h2 class="title"><%= @book.title %></h2>
+      <h3><em><%= @book.author %></em></h3>
 
-<h1><%= @book.title %></h1>
+    </div>
+    <div class="button">buttons go here</div>
 
-<%= image_tag @book.img_url %>
-<ul>
-  <li>Author:  <%= @book.author %></li>
-  <li>Publisher: <%= @book.publisher %></li>
-  <li>Date published: <%= @book.date_published %></li>
-  <li>Description: <%= @book.description %></li>
-</ul>
+  </div>
 
-<% if @current_user.present? %>
-  <% if @current_user.admin? %>
-  <%= link_to "Edit book", edit_book_path(@book) %>
-  <%= link_to "Delete book", @book, :method => 'delete', :data => {:confirm => "Are you sure?"}%>
-  <% end %>
-<% end %>
+  <div class="description">
+    <p><%= @book.description %></p>
+  </div>
+</div>
+
+
+<!-- <section class="book-showpage">
+  <h2><%= @book.title %></h2>
+  <div class="slider">
+        <div class="slider_item">
+          <%= image_tag @book.img_url %><div class="featured-info">
+            <p><%= @book.title %></p>
+            <p><%= @book.author %></p>
+            <p><%= @book.description %></p>
+          </div>
+        </div>
+  </div>
+</section> -->
