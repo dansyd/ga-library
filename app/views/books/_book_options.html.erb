@@ -1,6 +1,6 @@
 
 <br>
-<p id="copies">  <%= available_books(books).count %>/ <%= books.count %> copies <% if available_books(books).count > 0 %>
+<p id="copies">  <%= available_books(books).count %> / <%= books.count %> copies <% if available_books(books).count > 0 %>
   <span id="available">available<span></p>
     <%else %><p><span id="unavailable">Unavailable</span></p>
       <%end %>
