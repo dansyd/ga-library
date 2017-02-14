@@ -1,39 +1,67 @@
-<h1>Student Dashboard</h1>
+<header class="main-header">
+  <h1>Student Dashboard</h1>
+</header>
 
-<h2>Borrowed Books</h2>
-<% @current_user.get_reservations.each do |r| %>
-  <p>Book title: <%= r.book.title %></p>
-  <p>Status: <%= r.book.status %></p>
-  <p>Due date: <%= r.date_due %></p>
-<% end %>
+<div class="container">
 
-<h2>Waitlist</h2>
-<% if waitlist %>
-  <% waitlist.each do |book| %>
-    <p>Book title: <%= books.where({isbn: book.isbn}).first.title %></p>
+  <!-- CURRENT BORROWING BOOKS -->
+  <section class="dashboard-section">
+    <h2>Borrowed Books</h2>
+    <% if @current_user.reserved_books.present? %>
+      <% @current_user.get_reservations.each do |r| %>
+        <p>Book title: <%= r.book.title %></p>
+        <p>Status: <%= r.book.status %></p>
+        <p>Due date: <%= r.date_due %></p>
+      <% end %>
+    <% else %>
+      <div class="no-books">You are not borrowing any books at the moment</div>
+    <% end %>
+  </section>
+
+  <hr>
+
+  <section class="dashboard-section">
+    <h2>Waitlist</h2>
+    <% if waitlist.present? %>
+      <% waitlist.each do |book| %>
+        <p>Book title: <%= books.where({isbn: book.isbn}).first.title %></p>
+      <% end %>
+    <% else %>
+      <div class="no-books">No books in the waitlist</div>
+    <% end %>
+  </section>
+
+  <hr>
+
+  <section class="dashboard-section">
+    <h2>New book requests</h2>
+    <% if @current_user.submitted_requests.present? %>
+      <% @current_user.submitted_requests.each do |request| %>
+        <p><%= request[1] %></p>
+        <!-- potential security risk by entering a different id -->
+        <%= button_to 'Cancel Request', "/dashboard/request/cancel?id=#{request[0]}", method: :post %>
+      <% end %>
+    <% else %>
+      <div class="no-books">You have not requested any new books</div>
+    <% end %>
+  </section>
+
+  <hr>
+
+  <section class="dashboard-section">
+    <h2>Request a new book</h2>
+    <%= form_tag dashboard_search_path, :method => "get" do %>
+      <%= text_field_tag :search, params[:search], placeholder: "E.g. tractatus logico philosophicus", required: true %>
+      <%= submit_tag "Search" %>
+    <% end %>
+  </section>
+
+  <% if params[:search] %>
+  <script>
+    <% @book_info.each do |b| %>
+      $('.container').append('<%= image_tag b[:picture] %></p><p><%= b[:info].title %></p><p><%= b[:info].isbn_13 %></p><p><%= b[:info].description %></p><p><%= b[:info].authors %></p><%= button_to 'Request', "/dashboard/request?isbn=#{b[:info].isbn_13}", method: :post %>')
+    <% end %>
+  </script>
   <% end %>
-<% end %>
 
-<h2>Requested Books</h2>
-<% @current_user.submitted_requests.each do |request| %>
-  <p><%= request[1] %></p>
-  <!-- potential security risk by entering a different id -->
-  <%= button_to 'Cancel Request', "/dashboard/request/cancel?id=#{request[0]}", method: :post %>
-<% end %>
-
-<h2>Request a book</h2>
-<%= form_tag dashboard_search_path, :method => "get" do %>
-  <%= text_field_tag :search, params[:search], placeholder: "E.g. tractatus logico philosophicus", required: true %>
-  <%= submit_tag "Search" %>
-<% end %>
-
-<div>
 </div>
-
-<% if params[:search] %>
-<script>
-  <% @book_info.each do |b| %>
-    $('.container').append('<%= image_tag b[:picture] %></p><p><%= b[:info].title %></p><p><%= b[:info].isbn_13 %></p><p><%= b[:info].description %></p><p><%= b[:info].authors %></p><%= button_to 'Request', "/dashboard/request?isbn=#{b[:info].isbn_13}", method: :post %>')
-  <% end %>
-</script>
-<% end %>
