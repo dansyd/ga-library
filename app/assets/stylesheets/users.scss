@@ -1,34 +1,6 @@
-@import url('https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed');
+// @import url('https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed');
 @import 'variables';
-
-
-html {
-  box-sizing: border-box;
-}
-
-
-body {
-  margin: 0;
-  padding: 0;
-  font-family: $main-font;
-  box-sizing: border-box;
-
-}
-
-h1 {
-  font-size: 50px;
-}
-
-.container {
-  margin: 0 auto;
-  max-width: 960px;
-  // text-align: center;
-
-}
-
-ul li {
-  list-style: none;
-}
+@import 'main';
 
 //nav bar /////////////////////////////////////////////////
 .logo {
@@ -333,8 +305,8 @@ nav ul li ul li a {
 }
 
 .featured {
-  background-color: #e4f1fe;
-  padding: 1em 5em;
+  background-color: $ga-grey;
+  padding: $big-spacing 5em;
   img {
     display: inline-block;
     vertical-align: middle;
