@@ -10,6 +10,7 @@
     <% end %>
 
   <% else %>
+
       <% if @current_user.has_borrowed_this(books.first.isbn) %>
         <p>You already borrowed this book</p>
       <% elsif @current_user.has_reserved_this(books.first.isbn) %>
