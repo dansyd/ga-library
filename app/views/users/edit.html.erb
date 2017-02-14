@@ -5,14 +5,14 @@
 <% end %>
 
 <%= form_for @user do |f| %>
-  </%= f.label :current_password %>
-  </%= f.text_field :current_password %>
+  <%= f.label :current_password %>
+  <%= f.password_field :current_password %>
 
   <%= f.label :password %>
-  <%= f.text_field :password %>
+  <%= f.password_field :password %>
 
   <%= f.label :password_confirmation %>
-  <%= f.text_field :password_confirmation %>
+  <%= f.password_field :password_confirmation %>
 
   <%= f.submit %>
 <% end %>

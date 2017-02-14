@@ -96,14 +96,18 @@ class UsersController < ApplicationController
   end
 
   def edit
-    check_if_logged_in
     @user = @current_user
   end
 
   def update
     user = @current_user
-    user.update user_params
-    redirect_to root_path
+    if user.authenticate(params[:user][:current_password])
+      user.update user_params
+      redirect_to root_path
+    else
+      flash[:error] = "Incorrect Password"
+      redirect_to :back
+    end
   end
 
   private
