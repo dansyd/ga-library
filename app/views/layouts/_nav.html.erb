@@ -27,10 +27,12 @@
             <li><%= link_to "Requests", dashboard_path %></li>
             <li><%= link_to "Borrowed", dashboard_borrowed_path %> </li>
             <li><%= link_to "Wishlist", dashboard_wishlist_path %> </li>
+            <li><%= link_to "Edit Profile", edit_user_path(@current_user) %></li>
           </ul>
         </li>
         <%else %>
         <li><%= link_to "Student", dashboard_path %></li>
+        <li><%= link_to "Edit Profile", edit_user_path %></li>
         <% end %>
         <li><%= link_to "Logout", login_path, :method => 'delete' %></li>
 
