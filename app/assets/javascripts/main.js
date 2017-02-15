@@ -1,6 +1,4 @@
-console.log('main.js');
 $(document).ready(function(){
-  console.log('main.js ready');
   $('.dropdown').click(function (e) {
       // e.preventDefault();
       if ($(e.target).is(':not(.logout)')) {

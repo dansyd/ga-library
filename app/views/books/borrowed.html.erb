@@ -5,9 +5,11 @@
   <p><%= book.title %></p>
   <% r = book.reservation.where.not(date_borrowed: nil).order(:date_borrowed).last %>
   <% if r %>
+    <%= Date.today >= r.date_due %>
     <p>User: <%= r.user_id %><%= @users.find(r.user_id).name %></p>
     <p>borrowed date: <%= r.date_borrowed %></p>
     <p>date due: <%= r.date_due %></p>
-      <%= button_to 'Returned', "/return?id=#{r.book_id}", method: :post %>
+    <%= button_to 'Returned', "/return?id=#{r.book_id}", method: :post %>
+
   <% end %>
 <% end %>
