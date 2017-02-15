@@ -119,6 +119,13 @@
         color: white;
         cursor: pointer;
       }
+      &:disabled {
+        cursor: not-allowed;
+        pointer-events: none;
+        border: 1px solid #c0c0c0;
+        color: #c0c0c0;
+        background-color: #ffffff;
+      }
     }
   }
 

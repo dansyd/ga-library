@@ -49,6 +49,13 @@ button, input[type="submit"] {
   &:hover {
     cursor: pointer;
   }
+  &:disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+
+    color: #c0c0c0;
+    background-color: #ffffff;
+  }
 }
 
 input[type="text"] {
