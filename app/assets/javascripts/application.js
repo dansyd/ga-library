@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require slick.min
 //= require algolia/v3/algoliasearch.min
+//= require slick.min
 //= require autocomplete
 //= require_tree .
