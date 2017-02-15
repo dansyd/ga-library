@@ -1,14 +1,16 @@
+<div class="container add-book">
 <% if flash[:error].present? %>
   <p style="color: red"><%= flash[:error] %></p>
 <% end %>
 
 <%= form_tag books_path, :method => "post" do |f| %>
-  <fieldset class="labels">
+  <div class="form-group">
     <%= label_tag :isbn_13 %>
-    <%= text_field_tag :isbn, params[:isbn], required: true %>
-  </fieldset>
+    <%= text_field_tag :isbn, params[:isbn], required: true, :autofocus => true %>
+  </div>
 
-  <fieldset>
+  <div class="button">
     <%= submit_tag 'Add' %>
-  </fieldset>
+  </div>
 <% end %>
+</div>

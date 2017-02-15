@@ -2,20 +2,45 @@
   <h1>Admin Dashboard</h1>
 </header>
 
+<div class="container">
 <section class="dashboard-section">
-  <h2>Borrowing Requests</h2>
-  <% if reserved_books.present? %>
-    <% reserved_books.each do |book| %>
-      <% r = book.reservation.where(date_borrowed: nil).order(:date_requested).first %>
-      <p><%= users.find(r.user_id).name %>
-      <p>Book title: <%= book.title %></p>
-      <p>Book isbn: <%= book.isbn %></p>
-      <%= button_to 'Delivered', "/dashboard/reservation/borrowed?id=#{book.id}", method: :post %>
+    <h2>Borrowing Requests</h2>
+    <% if reserved_books.present? %>
+
+        <table class="borrowed-head">
+          <caption></caption>
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Book title</th>
+              <th scope="col">ISBN</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+        </table>
+
+      <% reserved_books.each do |book| %>
+        <% r = book.reservation.where(date_borrowed: nil).order(:date_requested).first %>
+
+        <table class="borrowed-body">
+          <tbody>
+            <tr>
+              <td scope="row" data-label="Name"><%= users.find(r.user_id).name %></td>
+              <td data-label="Book title"><%= book.title %></td>
+              <td data-label="ISBN"><%= book.isbn %></td>
+              <td data-label="Action"><%= button_to 'Delivered', "/dashboard/reservation/borrowed?id=#{book.id}", method: :post %></td>
+            </tr>
+          </tbody>
+        </table>
+
+      <% end %>
+    <% else %>
+      <div class="no-books">There are no requests.</div>
     <% end %>
-  <% else %>
-    <div class="no-books">There are no requests</div>
-  <% end %>
+
 </section>
+
+<hr>
 
 <section class="dashboard-section">
   <h2>Waitlist</h2>
@@ -30,17 +55,37 @@
   <% end %>
 </section>
 
+<hr>
+
 <section class="dashboard-section">
   <h2>New Book Requests</h2>
-  <% if requests.present? %>
-    <% requests.each do |request| %>
-      <p><%= request[:info].title %></p>
-      <p><%= request[:info].authors %></p>
-      <p><%= request[:info].image_link %></p>
-      <%= button_to 'Cancel Request', "/dashboard/request/cancel?id=#{request[:id]}", method: :post %>
-      <%= button_to 'Add to wishlist', "/dashboard/wishlist/add?isbn=#{request[:isbn]}&id=#{request[:id]}", method: :post %>
-    <% end %>
-  <% else %>
-    <div class="no-books">There are no requests <for></for> new books</div>
-  <% end %>
-</section>
+
+      <ul class="bookwrap">
+        <% if requests.present? %>
+          <% requests.each do |request| %>
+
+          <li>
+            <div class="book-image">
+              <%= image_tag request[:info].image_link %>
+            </div>
+
+            <div class="side">
+              <p><%= request[:info].title %></p>
+              <p><%= request[:info].authors %></p>
+            </div>
+
+            <div class="book-footer">
+              <%= button_to 'Add to wishlist', "/dashboard/wishlist/add?isbn=#{request[:isbn]}&id=#{request[:id]}", method: :post %>
+              <%= button_to 'Cancel Request', "/dashboard/request/cancel?id=#{request[:id]}", method: :post %>
+
+            </div>
+          </li>
+          <% end %>
+        </ul>
+
+          <% else %>
+            <div class="no-books">There are no requests for new books</div>
+        <% end %>
+
+  </section>
+</div>

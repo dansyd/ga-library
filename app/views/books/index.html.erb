@@ -35,7 +35,6 @@
   <ul class="bookwrap">
     <% @books.order(:title).group_by(&:isbn).each do |isbn, books| %>
       <li>
-
         <div class="book-image">
           <%= link_to image_tag(books.first.img_url), books.first %>
         </div>

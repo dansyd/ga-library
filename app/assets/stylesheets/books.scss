@@ -2,34 +2,97 @@
 
 // individual book show page /////////////////////////////////////
 .card-wrapper {
-  border: 1px solid green;
+  // border: 1px solid green;
   max-width: 700px;
   background: white;
-  border-top: 5px solid red;
+  // border-top: 5px solid red;
   // box-shadow: 0 2px 20px 0 rgba(0,0,0,.2);
   padding: 3em;
   margin: 100px auto;
+
+  h2 {
+    text-align: left;
+  }
   img {
     width: 150px;
     height: 200px;
-    border: 1px solid green;
+    // border: 1px solid green;
 
   }
   .card-top {
     display: flex;
-    max-width: 700px;
+    max-width: 800px;
     background: white;
     overflow: hidden;
-    border: 1px solid green;
+    // border: 1px solid green;
+    .card-image {
+      margin: 50px 0;
+    }
   }
-    .button {
-      border: 1px solid red;
 
-
-    }
-    .card-left {
+  .card-left {
       padding: 1em;
+      // border: 1px solid red;
+  }
+  .button {
+    // border: 1px solid red;
+  }
 
+  p {
+    color: #777777;
+    display: inline;
+    #available {
+      font-weight: bold;
+      color: #82CA9C;
+      text-transform: uppercase;
+      padding-left: 1em;
+    }
+    #unavailable {
+      @extend #available;
+      color: #F69679;
+    }
+  }
+
+  .out {
+    font-style: italic;
+  }
+
+  input[type="submit"] {
+    background-color: white;
+    color: $ga-red;
+    border: 1px solid $ga-red;
+    box-shadow: none;
+    float: right;
+
+    &:hover {
+      background-color: $ga-red;
+      color: white;
+      cursor: pointer;
     }
 
+    &:disabled {
+      cursor: not-allowed;
+      pointer-events: none;
+      border: 1px solid #c0c0c0;
+      color: #c0c0c0;
+      background-color: #ffffff;
+    }
+  }
+}
+
+.add-book {
+  text-align: center;
+  .form-group {
+    display: inline;
+  }
+  .button {
+    display: inline;
+    margin-left: 10px;
+
+  }
+}
+
+.overdue {
+  color: $ga-red;
+  font-weight: bold;
 }

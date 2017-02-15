@@ -4,11 +4,11 @@
     <div class="card-left">
       <h2 class="title"><%= @book.title %></h2>
       <h3><em><%= @book.author %></em></h3>
+      <div class="button">
+        <%= render :partial => 'book_options', :locals => {:books => @books} %>
+      </div>
+    </div>
 
-    </div>
-    <div class="button">
-      <%= render :partial => 'book_options', :locals => {:books => @books} %>
-    </div>
 
   </div>
 
@@ -16,17 +16,3 @@
     <p><%= @book.description %></p>
   </div>
 </div>
-
-
-<!-- <section class="book-showpage">
-  <h2><%= @book.title %></h2>
-  <div class="slider">
-        <div class="slider_item">
-          <%= image_tag @book.img_url %><div class="featured-info">
-            <p><%= @book.title %></p>
-            <p><%= @book.author %></p>
-            <p><%= @book.description %></p>
-          </div>
-        </div>
-  </div>
-</section> -->

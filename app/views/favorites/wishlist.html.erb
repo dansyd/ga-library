@@ -1,7 +1,35 @@
-<h1>Wishlist</h1>
-<% @wishlist.each do |favorite| %>
-  <p><%= favorite[:info].title %></p>
-  <p><%= favorite[:info].isbn %></p>
-  <p><%= favorite[:info].image_link %></p>
-  <%= button_to 'Cancel item', "/dashboard/wishlist/cancel?id=#{favorite[:id]}", method: :post %>
-<% end %>
+<header class="main-header">
+  <h1>Wishlist</h1>
+</header>
+
+<div class="container">
+  <section class="dashboard-section">
+
+    <ul class="bookwrap">
+      <% if @wishlist.present? %>
+        <% @wishlist.each do |favorite| %>
+
+          <li>
+            <div class="book-image">
+              <%= image_tag favorite[:info].image_link %>
+            </div>
+
+            <div class="side">
+              <p>ISBN: <%= favorite[:info].isbn %></p>
+              <p><%= favorite[:info].title %></p>
+              <p><%= favorite[:info].authors %></p>
+            </div>
+            <div class="book-footer">
+              <%= button_to 'Cancel item', "/dashboard/wishlist/cancel?id=#{favorite[:id]}", method: :post %>
+            </div>
+          </li>
+        <% end %>
+
+
+
+      <% else %>
+        <div class="no-books">There are no books in the wishlist.</div>
+        <% end %>
+        </ul>
+      </section>
+    </div>
