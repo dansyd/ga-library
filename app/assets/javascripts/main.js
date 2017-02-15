@@ -1,7 +1,11 @@
+console.log('main.js');
 $(document).ready(function(){
+  console.log('main.js ready');
   $('.dropdown').click(function (e) {
       // e.preventDefault();
-      e.stopPropagation();
+      if ($(e.target).is(':not(.logout)')) {
+        e.stopPropagation();
+      }
     $('.nav-dropdown').toggle();
   });
 
