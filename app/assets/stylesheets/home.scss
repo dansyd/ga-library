@@ -16,11 +16,11 @@
 }
 
 .featured {
-  padding: $big-spacing 5em;
+  padding: $big-spacing 11em;
   img {
     display: inline-block;
     vertical-align: middle;
-    width: 15%;
+    width: 19%;
     border: 1px solid red;
   }
   .slider {
@@ -34,7 +34,7 @@
   .featured-info {
     display: inline-block;
     vertical-align: middle;
-    width: 60%;
+    width: 75%;
     margin-left: 5%;
   }
 }
