@@ -4,7 +4,7 @@ class ReservationsController < ApplicationController
     reservation = Reservation.create({book_id: params[:book_id],
                                       user_id: @current_user.id,
                                       date_requested: Date.today.to_s })
-    book = Book.find params[:reservation][:book_id]
+    book = Book.find params[:book_id]
     book.status = 'reserved'
     book.save
     redirect_to root_path
