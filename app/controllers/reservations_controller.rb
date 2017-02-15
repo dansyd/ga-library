@@ -1,15 +1,12 @@
 class ReservationsController < ApplicationController
 
   def create
-    reservation = Reservation.new reservation_params
+    reservation = Reservation.create({book_id: params[:book_id],
+                                      user_id: @current_user.id,
+                                      date_requested: Date.today.to_s })
     book = Book.find params[:reservation][:book_id]
     book.status = 'reserved'
     book.save
-    if reservation.save
-      flash[:create] = "Reservation created successfully"
-    else
-      flash[:error] = "There was an error"
-    end
     redirect_to root_path
   end
 
@@ -30,9 +27,9 @@ class ReservationsController < ApplicationController
     redirect_to :back
   end
 
-  private
-  def reservation_params
-    params.require(:reservation).permit(:user_id, :book_id, :date_requested)
-  end
+  # private
+  # def reservation_params
+  #   params.require(:reservation).permit(:user_id, :book_id, :date_requested)
+  # end
 
 end
