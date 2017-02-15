@@ -119,18 +119,24 @@ nav ul li a:not(:only-child):after {
           content: '  ▾'; }
 
 nav ul li ul li {
-          min-width: 190px; }
+          min-width: 190px;
+          width: 100%;
+        }
 
 nav ul li ul li a {
           padding: 15px;
-          line-height: 20px; }
+          line-height: 20px;
+          width: 100%;
+         }
 
 .nav-dropdown {
   position: absolute;
   z-index: 1;
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
   background: black;
-  display: none; }
+  display: none;
+
+}
 
 .nav-mobile {
   display: none;
