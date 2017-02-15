@@ -7,8 +7,8 @@
   <!-- CURRENT BORROWING BOOKS -->
   <section class="dashboard-section">
     <h2>Borrowed Books</h2>
-    <% if @current_user.reserved_books.present? %>
-      <% @current_user.get_reservations.each do |r| %>
+    <% if @current_user.reservations.present? %>
+      <% @current_user.reservations.each do |r| %>
         <p>Book title: <%= r.book.title %></p>
         <p>Status: <%= r.book.status %></p>
         <p>Due date: <%= r.date_due %></p>

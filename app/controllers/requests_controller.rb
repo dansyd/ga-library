@@ -5,7 +5,9 @@ class RequestsController < ApplicationController
   end
 
   def cancel_request
-    @request = Request.find(params[:id]).destroy
+    if Request.find(params[:id]).user_id == @current_user.id
+      @request = Request.find(params[:id]).destroy
+    end
     redirect_to dashboard_path
   end
 end

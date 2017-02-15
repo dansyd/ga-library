@@ -48,10 +48,6 @@
 #
 
 Rails.application.routes.draw do
-  get 'pending_items/create'
-
-  get 'session/new'
-
   root :to=> 'books#index'
   resources :users, :only => [:new, :create, :update, :index, :edit]
   resources :books

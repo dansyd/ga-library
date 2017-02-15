@@ -29,7 +29,7 @@ class BooksController < ApplicationController
   def show
     @book = Book.find params[:id]
   end
-  
+
   def deliver
     Book.find(params[:id]).update({status: 'borrowed'})
     Book.find(params[:id]).reservation.where({date_borrowed: nil}).first.update({date_borrowed: Time.now.to_s, date_due: (Date.today + 10).to_s})
@@ -44,7 +44,9 @@ class BooksController < ApplicationController
 
   def search
     search = params[:search]
-    @book_info = GoogleBooks.search(search).map do |b|
+    books = GoogleBooks.search(search).select {|item| item.isbn }
+
+    @book_info = books.map do |b|
       if b.image_link || $gr_client.search_books(b.isbn_13).total_results == '0'
         {info: b, picture: b.image_link
         }
