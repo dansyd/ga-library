@@ -6,7 +6,9 @@
       <h3><em><%= @book.author %></em></h3>
 
     </div>
-    <div class="button">buttons go here</div>
+    <div class="button">
+      <%= render :partial => 'book_options', :locals => {:books => @books} %>
+    </div>
 
   </div>
 
