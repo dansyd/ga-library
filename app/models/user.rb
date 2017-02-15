@@ -23,13 +23,9 @@ class User < ActiveRecord::Base
   has_secure_password
   validates :email, :presence => true, :uniqueness => true
 
-  def get_reservations
-    reservations
-  end
-
   def submitted_requests
     requests.map do |r|
-      [r.id, $gr_client.book_by_isbn(r.isbn).title]
+      [r.id, GoogleBooks.search(r.isbn).first.title]
     end
   end
 
