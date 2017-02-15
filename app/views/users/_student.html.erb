@@ -16,6 +16,7 @@
             <th scope="col">Book title</th>
             <th scope="col">Status</th>
             <th scope="col">Due date</th>
+            <th scope="col">Delete</th>
           </tr>
         </thead>
       </table>
@@ -29,12 +30,13 @@
             <td data-label="Book title"><%= r.book.title %></td>
             <td data-label="Status"><%= r.book.status %></td>
 
-            <% if Date.today >= r.date_due %>
+            <% if r.date_due && Date.today >= r.date_due %>
 
-            <td data-label="Due date"><span class="overdue">Overdue<br><%= r.date_due %></span> </td>
-              <% else %>
-            <td data-label="Due date"><%= r.date_due %></td>
+              <td data-label="Due date"><span class="overdue">Overdue<br><%= r.date_due %></span> </td>
+            <% else %>
+              <td data-label="Due date"><%= r.date_due %></td>
             <% end %>
+            <td data-label="Action"><%= button_to 'Delete', reservation_path(r), :method => 'delete', :data => { :confirm => "Are you sure?" } %></b></td>
           </tr>
         </tbody>
       </table>
@@ -53,6 +55,7 @@
     <% if waitlist.present? %>
       <% waitlist.each do |book| %>
         <p>Book title: <%= books.where({isbn: book.isbn}).first.title %></p>
+        <b><%= button_to 'Delete', pending_items_path(book), :method => 'delete', :data => { :confirm => "Are you sure?" } %></b>
       <% end %>
     <% else %>
       <div class="no-books">No books in the waitlist</div>

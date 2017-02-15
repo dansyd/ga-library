@@ -28,7 +28,7 @@
               <td scope="row" data-label="Name"><%= users.find(r.user_id).name %></td>
               <td data-label="Book title"><%= book.title %></td>
               <td data-label="ISBN"><%= book.isbn %></td>
-              <td data-label="Action"><%= button_to 'Delivered', "/dashboard/reservation/borrowed?id=#{book.id}", method: :post %></td>
+              <td data-label="Action"><%= button_to 'Delivered', "/dashboard/reservation/borrowed?id=#{book.id}", method: :post %><b><%= button_to 'Delete', reservation_path(r), :method => 'delete', :data => { :confirm => "Are you sure?" } %></b></td>
             </tr>
           </tbody>
         </table>
@@ -49,6 +49,7 @@
       <p>User: <%= users.find(book.user_id).name  %>
       <p>Book title: <%= books.where(isbn: book.isbn).first.title %></p>
       <p>Book isbn: <%= book.isbn %></p>
+      <b><%= button_to 'Delete', pending_items_path(book), :method => 'delete', :data => { :confirm => "Are you sure?" } %></b>
     <% end %>
   <% else %>
     <div class="no-books">There are no books in the waitlist</div>

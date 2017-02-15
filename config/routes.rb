@@ -73,4 +73,5 @@ Rails.application.routes.draw do
   delete '/login' => 'session#destroy'
 
   post '/pending_items' => 'pending_items#create'
+  delete '/pending_items' => 'pending_items#destroy'
 end

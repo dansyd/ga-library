@@ -34,7 +34,7 @@
           <% if Date.today >= r.date_due %>
 
           <td data-label="Due date"><span class="overdue">Overdue<br><%= r.date_due %></span> </td>
-          <td data-label="Action"><%= button_to 'Delivered', "/dashboard/reservation/borrowed?id=#{book.id}", method: :post %></td>
+          <td data-label="Action"><%= button_to 'Returned', "/return?id=#{r.book_id}", method: :post %></td>
 
             <% else %>
 
