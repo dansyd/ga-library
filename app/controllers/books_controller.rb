@@ -28,6 +28,7 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find params[:id]
+    @books = Book.where({isbn: @book.isbn})
   end
 
   def deliver

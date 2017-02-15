@@ -6,12 +6,13 @@
   <div class="container">
     <h2>Latest books</h2>
     <div class="slider">
-        <% @books.order(:created_at).limit(3).each do |book| %>
+        <% @books.order(:created_at).group_by(&:isbn).first(3).each do |isbn, books| %>
           <div class="slider_item">
-            <%= image_tag book.img_url %><div class="featured-info">
-              <p><%= book.title %></p>
-              <p><%= book.author %></p>
-              <p><%= book.description %></p>
+            <%= image_tag books.first.img_url %><div class="featured-info">
+              <p><%= books.first.title %></p>
+              <p><%= books.first.author %></p>
+              <%= render :partial => 'book_options', :locals => {:books => books} %>
+              <p><%= books.first.description %></p>
             </div>
           </div>
         <% end %>
