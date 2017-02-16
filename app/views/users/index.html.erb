@@ -17,7 +17,7 @@
         <td><%= user.id %></td>
         <td><%= user.name %></td>
         <td><%= user.email %></td>
-        <% if user.borrowed_books.length == 0 && user.pending_books.length == 0 %>
+        <% if user.reservations.where(returned: false).length == 0 && user.reservations.where(returned: nil).length == 0 %>
           <td><%= button_to 'Delete User', user_path(user), method: :delete %></td>
         <% else %>
           <td><%= button_to 'Delete User', nil, disabled: true %></td>

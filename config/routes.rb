@@ -63,7 +63,7 @@ Rails.application.routes.draw do
   get '/dashboard/search' => 'books#search'
   get '/dashboard/borrowed' => 'books#borrowed'
   post '/dashboard/reservation/borrowed' => 'books#deliver'
-  post '/return' => 'reservations#return'
+  post '/return/:id' => 'reservations#return'
 
   post '/dashboard/request' => 'requests#make_request'
   delete '/dashboard/request/:id' => 'requests#cancel_request'

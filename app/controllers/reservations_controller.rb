@@ -12,20 +12,21 @@ class ReservationsController < ApplicationController
   end
 
   def return
-    isbn = Book.find(params[:id]).isbn
+    reservation = Reservation.find(params[:id]).update({returned: true})
+    isbn = Book.find(params[:b_id]).isbn
     next_item = PendingItem.where({isbn: isbn}).order(:date_requested)[0]
     # loop through waitlist with isbn
     # get 1st by date
     # create reservation with book_id, user_id, dates
     # remove item from waitlist
     if next_item
-      Reservation.create({book_id: params[:id], user_id: next_item.user_id, date_requested: next_item.date_requested})
-      book = Book.find(params[:id])
+      Reservation.create({book_id: params[:b_id], user_id: next_item.user_id, date_requested: next_item.date_requested})
+      book = Book.find(params[:b_id])
       UserMailer.book_now_available(next_item.user_id, book).deliver_now
       book.update({status: 'Reserved'})
       PendingItem.find(next_item.id).destroy
     else
-      Book.find(params[:id]).update({status: 'Available'})
+      Book.find(params[:b_id]).update({status: 'Available'})
     end
     flash[:message] = "Return Confirmed (See me in Reservations#return)"
     redirect_to :back

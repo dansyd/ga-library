@@ -25,11 +25,14 @@ class User < ActiveRecord::Base
   validates :email, :presence => true, :uniqueness => true
 
   def has_reserved_this(isbn)
-    self.reserved_books.where({isbn: isbn}).exists? || self.pending_items.where({isbn: isbn}).exists?
+    book = self.pending_books.where({isbn: isbn}).last
+    book && book.reservations.where({returned: nil}).exists? ||
+    self.pending_items.where({isbn: isbn}).exists?
   end
 
   def has_borrowed_this(isbn)
-    self.borrowed_books.pluck('isbn').include?(isbn)
+    book = self.borrowed_books.where({isbn: isbn}).last
+    book && book.reservations.where({returned: false}).exists?
   end
 
 end

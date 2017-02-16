@@ -9,7 +9,7 @@
 <div class="container">
   <section class="dashboard-section">
     <h2>Borrowed Books</h2>
-    <% borrowed_books = @current_user.reservations.reject {|r| books.find(r.book_id).status == 'Available'} %>
+    <% borrowed_books = @current_user.reservations.where(returned: false) %>
     <% if borrowed_books.length > 0 %>
       <table class="borrowed-head">
         <caption></caption>
