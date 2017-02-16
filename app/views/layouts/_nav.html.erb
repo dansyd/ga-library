@@ -7,7 +7,7 @@
     </div>
 
     <nav>
-      <div class="nav-mobile"><a id="nav-toggle" href="#!"><span></span></a></div>
+      <!-- <div class="nav-mobile"><a id="nav-toggle" href="#!"><span></span></a></div> -->
 
       <ul class="nav-list">
         <li><%= link_to "Catalogue", root_path %></li>
@@ -19,11 +19,21 @@
             <li><%= link_to "Add Books", new_book_path %></li>
             <li><%= link_to "All Users", users_path %></li>
             <li class="dropdown">
-              <a href="#">
-                <% if Book.where({status: 'Reserved'}).count > 0 %>
-                  <span class="notification"><%= Book.where({status: 'Reserved'}).count %></span>
-                <% end %>
-                <%= @current_user.name %> (Admin) </a>
+                <% if Book.where({status: 'Reserved'}).count <= 0 %>
+                <a href="#"><%= @current_user.name %> (Admin)</a>
+                <% else %>
+                  <a href="#">
+                    <div class="tooltip">
+                      <span class="notification">
+                        <%= Book.where({status: 'Reserved'}).count %>
+                      </span>
+
+                      <span class="tooltiptext"><i class="fa fa-book" aria-hidden="true"></i> You have <%= pluralize(Book.where({status: 'Reserved'}).count, 'request') %> !</span>
+                    </div>
+                    <%= @current_user.name %> (Admin)
+                  </a>
+                <%end%>
+
 
                 <ul class="nav-dropdown">
                   <li><%= link_to "Requests", dashboard_path %></li>

@@ -4,8 +4,8 @@
 // DAN
 .notification {
   display: inline-block;
-  background-color: white;
-  color: black;
+  background-color: red;
+  color: white;
   padding: 5px;
   margin: 0 5px;
   border-radius: 100%;
@@ -21,7 +21,7 @@
   img {
     display: inline-block;
     vertical-align: middle;
-    width: 25%;
+    width: 20%;
     margin-left: 5px;
     box-shadow: $card-boxshadow;
   }
@@ -38,6 +38,7 @@
     vertical-align: middle;
     width: 67%;
     margin-left: 5%;
+    font-size: 13px;
   }
 }
 
@@ -60,21 +61,22 @@
   .book-image {
     height: 173px;
     width: 132px;
-    margin: 10px 0;
+    margin: 0 auto;
     overflow: hidden;
+    display: flex;
     // border: 1px solid blue;
-  }
-  .side {
-    // border: 1px solid pink;
-    text-transform: uppercase;
-    color: #777777;
-
-    a {
-      text-decoration: none;
-      font-weight: bold;
-      color: black;
+    .side {
+      // border: 1px solid pink;
+      text-transform: uppercase;
+      color: #777777;
+      text-align: center;
     }
   }
+  .side {
+    text-align: center;
+    padding: $small-spacing;
+  }
+
   li {
   	margin: 10px 1%;
   	padding: $main-spacing;
@@ -93,6 +95,8 @@
     }
   }
   .book-footer, #carousel-footer {
+    border-top: 1px solid grey;
+    padding-top: 1em;
   	margin-top: auto;
     p {
       color: #777777;
@@ -176,6 +180,14 @@
       background-color: #ffffff;
     }
   }
+}
+
+#author {
+  line-height: 0.5em;
+}
+
+#carousel-description {
+  padding-top: 2em;
 }
 
 .pagination {

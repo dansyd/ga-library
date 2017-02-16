@@ -19,11 +19,15 @@
               <%= image_tag books.first.img_url %>
             <% end %>
             <div class="featured-info">
-              <p><%= books.first.title %></p>
-              <p><%= books.first.author %></p>
+              <div id="author">
+                <%= link_to books.first do %>
+                  <p><%= books.first.title %></p>
+                <% end %>
+                <p><%= books.first.author %></p>
+              </div>
               <div id="carousel-footer">
               <%= render :partial => 'book_options', :locals => {:books => books} %></div>
-              <p><%= truncate(books.first.description, length: 500,  separator: ' ') %></p>
+              <p id="carousel-description"><%= truncate(books.first.description, length: 300,  separator: ' ') %></p>
             </div>
           </div>
         <% end %>
@@ -33,6 +37,7 @@
 
 <div class="container">
   <div class="algolia-container">
+    <h2>Search the library catalogue</h2>
     <div class="aa-input-container" id="aa-input-container">
         <input type="search" id="aa-search-input" class="aa-input-search" placeholder="Search Library" name="search" autocomplete="off" />
         <svg class="aa-input-icon" viewBox="654 -372 1664 1664">
@@ -45,24 +50,25 @@
 
   <ul class="bookwrap">
     <% @alpha_books_key.each do |isbn| %>
-        <li>
+      <li>
 
-          <div class="book-image">
-            <%= link_to image_tag(@alpha_books[isbn].first.img_url), @alpha_books[isbn].first %>
-          </div>
+        <div class="book-image">
+          <%= link_to image_tag(@alpha_books[isbn].first.img_url), @alpha_books[isbn].first %>
+        </div>
 
-          <div class="side">
-            <p><%= link_to @alpha_books[isbn].first.title, @alpha_books[isbn].first %></p>
-            <p><%= @alpha_books[isbn].first.author %></p>
-            <p><%= @alpha_books[isbn].first.date_published %></p>
-          </div>
+        <div class="side">
+          <p><%= link_to @alpha_books[isbn].first.title, @alpha_books[isbn].first %></p>
+          <p><%= @alpha_books[isbn].first.author %></p>
+          <p><%= @alpha_books[isbn].first.date_published %></p>
+        </div>
 
-          <div class="book-footer">
+        <div class="book-footer">
           <%= render :partial => 'book_options', :locals => {:books => @alpha_books[isbn]} %>
-          </div>
-        </li>
+        </div>
+      </li>
     <% end %>
   </ul>
+
   <%= will_paginate @alpha_books_key, :class => 'pagination' %>
 
 </div>

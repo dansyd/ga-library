@@ -8,7 +8,7 @@
 
 <div class="container">
 <section class="dashboard-section">
-    <h2>Borrowing Requests</h2>
+  <h2>Borrowing Requests</h2>
     <% if reserved_books.present? %>
 
         <table class="borrowed-head">
@@ -78,31 +78,31 @@
 <section class="dashboard-section">
   <h2>New Book Requests</h2>
 
-      <ul class="bookwrap">
         <% if requests.present? %>
-          <% requests.each do |request| %>
+          <ul class="bookwrap">
 
-          <li>
-            <div class="book-image">
-              <%= image_tag request[:info].image_link %>
-            </div>
+            <% requests.each do |request| %>
 
-            <div class="side">
-              <p><%= request[:info].title %></p>
-              <p><%= request[:info].authors %></p>
-            </div>
+              <li>
+                <div class="book-image">
+                  <%= image_tag request[:info].image_link %>
+                </div>
 
-            <div class="book-footer">
-              <%= button_to 'Add to wishlist', "/dashboard/wishlist/add?isbn=#{request[:isbn]}&id=#{request[:id]}", method: :post %>
-              <%= button_to 'Cancel Request', "/dashboard/request/#{request[:id]}", method: :delete %>
+                <div class="side">
+                  <p><%= request[:info].title %></p>
+                  <p><%= request[:info].authors %></p>
+                </div>
 
-            </div>
-          </li>
-          <% end %>
-        </ul>
+                <div class="book-footer">
+                  <%= button_to 'Add to wishlist', "/dashboard/wishlist/add?isbn=#{request[:isbn]}&id=#{request[:id]}", method: :post %>
+                  <%= button_to 'Cancel Request', "/dashboard/request/#{request[:id]}", method: :delete %>
 
-          <% else %>
-            <div class="no-books">There are no requests for new books</div>
+                </div>
+              </li>
+            <% end %>
+          </ul>
+        <% else %>
+          <div class="no-books">There are no requests for new books</div>
         <% end %>
 
   </section>
