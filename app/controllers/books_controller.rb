@@ -1,6 +1,8 @@
 class BooksController < ApplicationController
   def index
-    @books = Book.all
+    @latest_books = Book.order(:created_at).group_by(&:isbn).first(3)
+    @alpha_books = Book.order(:title).group_by(&:isbn)
+    @alpha_books_key = @alpha_books.keys.paginate(:page => params[:page], :per_page => 4)
   end
 
   def borrowed
