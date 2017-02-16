@@ -8,11 +8,9 @@
 
 <div class="container">
   <section class="dashboard-section">
-
     <h2>Borrowed Books</h2>
-
-    <% if @current_user.reservations.present? %>
-
+    <% borrowed_books = @current_user.reservations.reject {|r| books.find(r.book_id).status == 'available'} %>
+    <% if borrowed_books.length > 0 %>
       <table class="borrowed-head">
         <caption></caption>
         <thead>
@@ -24,11 +22,8 @@
           </tr>
         </thead>
         <tbody>
-
-          <% @current_user.reservations.each do |r| %>
-
+          <% borrowed_books.each do |r| %>
             <tr>
-
               <td data-label="Book title"><%= link_to r.book.title, r.book %></td>
               <td data-label="Status"><%= r.book.status %></td>
 
@@ -74,7 +69,6 @@
       <div class="no-books">No books in the waitlist</div>
     <% end %>
   </section>
-
 
   <hr>
 
