@@ -1,6 +1,6 @@
 
 <br>
-<p id="copies">  <%= available_books(books).count %> / <%= books.count %> copies
+<p id="copies">  <%= available_books(books).count %> / <%= pluralize(books.count, 'copy') %>
 <% if available_books(books).count > 0 %>
   <span id="available">available<span></p>
 <%else %>
@@ -23,7 +23,7 @@
     <% elsif @current_user.has_reserved_this(books.first.isbn) %>
       <br><p class="out">You already reserved this book</p>
     <% else %>
-      <% if sort_books_by_status(books).first.status == 'available' %>
+      <% if sort_books_by_status(books).first.status == 'Available' %>
         <b><%= button_to 'Reserve', reservations_path(:action => 'create', :book_id => sort_books_by_status(books).first), :method=>:post %></b>
 
       <% else %>

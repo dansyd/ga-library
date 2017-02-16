@@ -18,7 +18,7 @@ class Reservation < ActiveRecord::Base
 
 
   def self.check_for_due_dates
-    borrowed_books = Book.where({status: 'borrowed'})
+    borrowed_books = Book.where({status: 'Borrowed'})
     borrowed_books.each do |book|
       book.reservations.each do |reservation|
         if reservation.date_due == Date.today + 10

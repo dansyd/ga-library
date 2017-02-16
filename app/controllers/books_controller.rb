@@ -4,13 +4,13 @@ class BooksController < ApplicationController
   before_action :check_if_admin, :only => [:borrowed]
 
   def index
-    @latest_books = Book.order(:created_at).group_by(&:isbn).first(3)
+    @latest_books = Book.order('created_at DESC').group_by(&:isbn).first(3)
     @alpha_books = Book.order(:title).group_by(&:isbn)
     @alpha_books_key = @alpha_books.keys.paginate(:page => params[:page], :per_page => 4)
   end
 
   def borrowed
-    @borrowed_books = Book.where({status: 'borrowed'})
+    @borrowed_books = Book.where({status: 'Borrowed'})
     @users = User.all
   end
 
@@ -25,7 +25,7 @@ class BooksController < ApplicationController
                           date_published: b.published_date,
                           description: b.description,
                           img_url: b.image_link,
-                          status: 'available'})
+                          status: 'Available'})
       flash[:message] = "Successfully added (See me in books#create)"
     else
       flash[:error] = "Invalid ISBN"
@@ -39,7 +39,7 @@ class BooksController < ApplicationController
   end
 
   def deliver
-    Book.find(params[:id]).update({status: 'borrowed'})
+    Book.find(params[:id]).update({status: 'Borrowed'})
     Book.find(params[:id]).reservations.where({date_borrowed: nil}).first.update({date_borrowed: Time.now.to_s, date_due: (Date.today + 10).to_s})
     flash[:message] = "Delivery confirmed (See me in Books#deliver)"
     redirect_to :back
