@@ -23,7 +23,7 @@
 
         <% @borrowed_books.each do |book| %>
           <tr>
-            <% r = book.reservation.where.not(date_borrowed: nil).order(:date_borrowed).last %>
+            <% r = book.reservations.where.not(date_borrowed: nil).order(:date_borrowed).last %>
             <td scope="row" data-label="Name"><%= @users.find(r.user_id).name %></td>
             <td data-label="Book title"><%= link_to book.title, book %></td>
             <td data-label="Date borrowed"><%= r.date_borrowed.to_s(:short) %></td>

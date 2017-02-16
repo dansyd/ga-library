@@ -1,0 +1,13 @@
+Due date reminder
+===============================================
+
+Hi <%= @user.name %>,
+The following book is due tomorrow, <%= (Date.today + 1).strftime("%A %e %B %Y") %>
+
+<%= @book.title %>
+Author: <%= @book.author %>
+
+Please return the book in time to avoid penalty fees
+
+Thank you
+GA Sydney Team

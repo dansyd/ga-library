@@ -22,9 +22,9 @@
             </tr>
           </thead>
           <tbody>
-
+            
             <% reserved_books.each do |book| %>
-              <% r = book.reservation.where(date_borrowed: nil).order(:date_requested).first %>
+              <% r = book.reservations.where(date_borrowed: nil).order(:date_requested).first %>
 
                   <tr>
                     <td scope="row" data-label="Name"><%= users.find(r.user_id).name %></td>

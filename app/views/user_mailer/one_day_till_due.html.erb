@@ -1,0 +1,11 @@
+<h1>Due date reminder</h1>
+<p>Hi <%= @user.name %>,</p>
+<p>The following book is due tomorrow, <%= (Date.today + 1).strftime("%A %e %B %Y") %></p>
+
+<div class="book-details">
+  <%= image_tag @book.img_url%>
+  <h3><%= @book.title %></h3>
+  <p>Author: <%= @book.author %></p>
+</div>
+
+<p>Please return the book in time to avoid penalty fees</p>

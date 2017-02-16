@@ -35,7 +35,7 @@ class BooksController < ApplicationController
 
   def deliver
     Book.find(params[:id]).update({status: 'borrowed'})
-    Book.find(params[:id]).reservation.where({date_borrowed: nil}).first.update({date_borrowed: Time.now.to_s, date_due: (Date.today + 10).to_s})
+    Book.find(params[:id]).reservations.where({date_borrowed: nil}).first.update({date_borrowed: Time.now.to_s, date_due: (Date.today + 10).to_s})
     flash[:message] = "Delivery confirmed (See me in Books#deliver)"
     redirect_to :back
   end
