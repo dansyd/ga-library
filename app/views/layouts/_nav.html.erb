@@ -20,8 +20,8 @@
             <li><%= link_to "All Users", users_path %></li>
             <li class="dropdown">
               <a href="#">
-                <% if Book.where({status: 'reserved'}).count > 0 %>
-                  <span class="notification"><%= Book.where({status: 'reserved'}).count %></span>
+                <% if Book.where({status: 'Reserved'}).count > 0 %>
+                  <span class="notification"><%= Book.where({status: 'Reserved'}).count %></span>
                 <% end %>
                 <%= @current_user.name %> (Admin) </a>
 

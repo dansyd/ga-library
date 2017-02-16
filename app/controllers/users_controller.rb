@@ -13,7 +13,7 @@ class UsersController < ApplicationController
 
   def dashboard
     @books = Book.all
-    @reserved_books = Book.where({status: 'reserved'})
+    @reserved_books = Book.where({status: 'Reserved'})
     @users = User.all
     @waitlist = PendingItem.all
     @student_waitlist = PendingItem.where({user_id: @current_user.id})
