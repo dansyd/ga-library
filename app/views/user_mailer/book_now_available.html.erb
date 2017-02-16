@@ -1,0 +1,11 @@
+<h1>Book available</h1>
+<p>Hi <%= @user.name %>,</p>
+<p>The book you reserved is now available for collection. Please see details below</p>
+
+<div class="book-details">
+  <%= image_tag @book.img_url%>
+  <h3><%= @book.title %></h3>
+  <p>Author: <%= @book.author %></p>
+</div>
+
+<p>Please see one of our staff member at the front desk to collect the book</p>

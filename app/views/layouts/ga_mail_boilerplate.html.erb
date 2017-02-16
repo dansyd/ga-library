@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <style>
+    body {
+      font-family: Helvetica, sans-serif;
+      font-size: 14px;
+      line-height: 1;
+    }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    header {
+      margin: 0;
+      background-color: black;
+    }
+    header img {
+      height: 80px;
+    }
+    .book-details {
+      margin: 60px 0;
+    }
+    .book-details img {
+      width: 120px;
+    }
+    .signature {
+      margin-top: 60px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <img src="https://68.media.tumblr.com/9f6680419a5c1b3716427a42172f8a81/tumblr_ol9k3cuFMh1sjludfo1_400.png" alt="">
+    </div>
+  </header>
+
+  <div class="container">
+    <%= yield %>
+
+    <div class="signature">
+      <p>Thank you</p>
+      <p>GA Sydney Team</p>
+    </div>
+
+  </div>
+
+</body>
+</html>
