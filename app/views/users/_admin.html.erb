@@ -24,7 +24,7 @@
         </table>
 
       <% reserved_books.each do |book| %>
-        <% r = book.reservation.where(date_borrowed: nil).order(:date_requested).first %>
+        <% r = book.reservations.where(date_borrowed: nil).order(:date_requested).first %>
 
         <table class="borrowed-body">
           <tbody>

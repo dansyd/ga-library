@@ -23,6 +23,6 @@ class Book < ActiveRecord::Base
     searchableAttributes ['title', 'author', 'unordered(isbn)', 'unordered(img_url)']
   end
 
-  has_many :reservation
+  has_many :reservations
 
 end
