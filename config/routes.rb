@@ -66,7 +66,7 @@ Rails.application.routes.draw do
   post '/return' => 'reservations#return'
 
   post '/dashboard/request' => 'requests#make_request'
-  post '/dashboard/request/cancel' => 'requests#cancel_request'
+  delete '/dashboard/request/:id' => 'requests#cancel_request'
 
   get '/login' => 'session#new'
   post '/login' => 'session#create'

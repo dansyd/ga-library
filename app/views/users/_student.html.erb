@@ -85,7 +85,7 @@
         <% book = GoogleBooks.search(request.isbn).first %>
         <div class="card-container">
           <p>Title/ISBN: <%= (book && book.title)||request.isbn %></p>
-          <%= button_to 'Cancel Request', "/dashboard/request/cancel?id=#{request[0]}", method: :post %>
+          <%= button_to 'Cancel Request', "/dashboard/request/#{request.id}", method: :delete %>
         </div>
       <% end %>
     <% else %>

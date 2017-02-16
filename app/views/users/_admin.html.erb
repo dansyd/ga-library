@@ -22,7 +22,7 @@
             </tr>
           </thead>
           <tbody>
-            
+
             <% reserved_books.each do |book| %>
               <% r = book.reservations.where(date_borrowed: nil).order(:date_requested).first %>
 
@@ -94,7 +94,7 @@
 
             <div class="book-footer">
               <%= button_to 'Add to wishlist', "/dashboard/wishlist/add?isbn=#{request[:isbn]}&id=#{request[:id]}", method: :post %>
-              <%= button_to 'Cancel Request', "/dashboard/request/cancel?id=#{request[:id]}", method: :post %>
+              <%= button_to 'Cancel Request', "/dashboard/request/#{request[:id]}", method: :delete %>
 
             </div>
           </li>

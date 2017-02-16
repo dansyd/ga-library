@@ -9,7 +9,7 @@ class SessionController < ApplicationController
       session[:user_id] = user.id
       redirect_to root_path
     else
-      flash[:error] = "Invalid email or password"
+      flash[:error] = "Invalid email or password" unless !params[:email]
       redirect_to login_path
     end
   end
