@@ -24,6 +24,7 @@ class ReservationsController < ApplicationController
     else
       Book.find(params[:id]).update({status: 'available'})
     end
+    flash[:message] = "Return Confirmed"
     redirect_to :back
   end
 
@@ -43,10 +44,5 @@ class ReservationsController < ApplicationController
     end
     redirect_to :back
   end
-
-  # private
-  # def reservation_params
-  #   params.require(:reservation).permit(:user_id, :book_id, :date_requested)
-  # end
 
 end
