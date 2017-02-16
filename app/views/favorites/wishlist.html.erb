@@ -26,6 +26,7 @@
               </div>
               <div class="book-footer">
                 <%= button_to 'Cancel item', "/dashboard/wishlist/cancel?id=#{favorite[:id]}", method: :post %>
+                <%= button_to 'Add item', books_path(:isbn => favorite[:info].isbn, :id => favorite[:id]), method: :post %>
               </div>
             </li>
           <% end %>

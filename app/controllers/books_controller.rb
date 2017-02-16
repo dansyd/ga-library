@@ -27,6 +27,7 @@ class BooksController < ApplicationController
                           img_url: b.image_link,
                           status: 'Available'})
       flash[:message] = "Successfully added"
+      Favorite.find(params[:id]).destroy
     else
       flash[:error] = "Invalid ISBN"
     end
