@@ -49,7 +49,7 @@
 
 Rails.application.routes.draw do
   root :to=> 'books#index'
-  resources :users, :only => [:new, :create, :update, :index, :edit]
+  resources :users, :only => [:new, :create, :update, :index, :edit, :destroy]
   resources :books
   resources :reservations
   resources :requests
