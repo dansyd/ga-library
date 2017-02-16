@@ -1,28 +1,35 @@
-<% if flash[:message].present? %>
-  <p class="flash"><i class="fa fa-frown-o" aria-hidden="true"></i> </i> <%= flash[:message] %></p>
-<% end %>
+<header>
+  <h1>All users</h1>
+</header>
 
-<table class="borrowed-head">
-  <thead>
-    <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Name</th>
-      <th scope="col">Email</th>
-      <th scope="col">Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @users.each do |user| %>
+<div class="container">
+
+  <% if flash[:message].present? %>
+    <p class="flash"><i class="fa fa-frown-o" aria-hidden="true"></i> </i> <%= flash[:message] %></p>
+  <% end %>
+
+  <table class="borrowed-head">
+    <thead>
       <tr>
-        <td><%= user.id %></td>
-        <td><%= user.name %></td>
-        <td><%= user.email %></td>
-        <% if user.reservations.where(returned: false).length == 0 && user.reservations.where(returned: nil).length == 0 %>
-          <td><%= button_to 'Delete User', user_path(user), method: :delete %></td>
-        <% else %>
-          <td><%= button_to 'Delete User', nil, disabled: true %></td>
-        <% end %>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Actions</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.id %></td>
+          <td><%= user.name %></td>
+          <td><%= user.email %></td>
+          <% if !user.admin && user.reservations.where(returned: false).length == 0 && user.reservations.where(returned: nil).length == 0 %>
+            <td><%= button_to 'Delete User', user_path(user), method: :delete %></td>
+          <% else %>
+            <td><%= button_to 'Delete User', nil, disabled: true %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

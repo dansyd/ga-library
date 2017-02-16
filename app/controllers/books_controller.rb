@@ -26,7 +26,7 @@ class BooksController < ApplicationController
                           description: b.description,
                           img_url: b.image_link,
                           status: 'Available'})
-      flash[:message] = "Successfully added (See me in books#create)"
+      flash[:message] = "Successfully added"
     else
       flash[:error] = "Invalid ISBN"
     end
@@ -41,14 +41,14 @@ class BooksController < ApplicationController
   def deliver
     Book.find(params[:id]).update({status: 'Borrowed'})
     Book.find(params[:id]).reservations.where({date_borrowed: nil}).first.update({date_borrowed: Time.now.to_s, date_due: (Date.today + 10).to_s, returned: false})
-    flash[:message] = "Delivery confirmed (See me in Books#deliver)"
+    flash[:message] = "Delivery confirmed"
     redirect_to :back
   end
 
   def destroy
     book = Book.find params[:id]
     book.destroy
-    flash[:message] = "Book Deleted (See me in Books#destroy)"
+    flash[:message] = "Book Deleted"
     redirect_to books_path
   end
 

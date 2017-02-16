@@ -55,7 +55,7 @@ class UsersController < ApplicationController
   def destroy
     user = User.find params[:id]
     user.destroy
-    flash[:message] = "User eliminated (See me in Users#destroy)"
+    flash[:message] = "User eliminated"
     redirect_to :back
   end
 

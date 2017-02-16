@@ -6,9 +6,9 @@ class PendingItemsController < ApplicationController
     pending_item.user_id = @current_user.id
     pending_item.date_requested = DateTime.now
     if pending_item.save
-      flash[:message] = 'Reservation request sent (See me in PendingItem#create)'
+      flash[:message] = 'Reservation request sent'
     else
-      flash[:message] = 'An error occured (See me in PendingItem#create)'
+      flash[:message] = 'An error occured'
     end
     redirect_to root_path
   end
@@ -19,7 +19,7 @@ class PendingItemsController < ApplicationController
     user = User.find pending_item.user_id
     book = Book.where({isbn: pending_item.isbn}).first
     UserMailer.reservation_cancelled(user, book).deliver_now
-    flash[:message] = "Request cancelled (See me in PendingItem#destroy)"
+    flash[:message] = "Request cancelled"
     redirect_to :back
   end
 
