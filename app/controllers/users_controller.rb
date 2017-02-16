@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   before_action :check_if_logged_in, :only => [:edit, :update]
-  before_action :check_if_admin, :only => [:index, :borrowed, :wishlist]
+  before_action :check_if_admin, :only => [:index]
 
   def index
     @users = User.all

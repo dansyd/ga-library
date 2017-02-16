@@ -1,4 +1,7 @@
 class FavoritesController < ApplicationController
+  before_action :check_if_logged_in, :only => [:wishlist]
+  before_action :check_if_admin, :only => [:wishlist]
+
   def wishlist
     @wishlist = Favorite.all.map do |f|
       {info: GoogleBooks.search(f.isbn).first, id: f.id}
