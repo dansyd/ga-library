@@ -25,7 +25,7 @@
         <b><%= button_to 'Reserve', reservations_path(:action => 'create', :book_id => sort_books_by_status(books).first), :method=>:post %></b>
 
       <% else %>
-        <b><%= button_to 'Reserve', pending_items_path(:action => 'create', :isbn => sort_books_by_status(books).first.isbn), :method=>:post %></b>
+        <b><%= button_to 'Reserve', pending_items_path(:action => 'create', :user_id => @current_user.id, :isbn => sort_books_by_status(books).first.isbn, :date_requested => Time.now), :method=>:post %></b>
       <% end %>
     <% end %>
 
