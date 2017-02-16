@@ -21,9 +21,9 @@ class Reservation < ActiveRecord::Base
     borrowed_books = Book.where({status: 'borrowed'})
     borrowed_books.each do |book|
       book.reservation.each do |reservation|
-        if reservation.date_due == Date.today + 1
+        if reservation.date_due == Date.today + 10
           user = User.find reservation.user_id
-          UserMailer.one_day_till_due(user, book)
+          UserMailer.one_day_till_due(user, book).deliver_now
         end
       end
     end
