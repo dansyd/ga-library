@@ -52,6 +52,13 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    user = User.find params[:id]
+    user.destroy
+    flash[:message] = "User eliminated (See me in Users#destroy)"
+    redirect_to :back
+  end
+
   private
   def user_params
     params.require(:user).permit(:name, :class, :email, :password, :password_confirmation)
