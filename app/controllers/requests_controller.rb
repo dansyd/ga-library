@@ -6,7 +6,7 @@ class RequestsController < ApplicationController
   end
 
   def cancel_request
-    if Request.find(params[:id]).user_id == @current_user.id
+    if @current_user.admin || Request.find(params[:id]).user_id == @current_user.id
       @request = Request.find(params[:id]).destroy
     end
     flash[:message] = "Request cancelled (See me in Requests#cancel_request)"

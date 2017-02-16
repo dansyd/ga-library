@@ -50,13 +50,13 @@ Whether you’re a web developer or a Node.js developer, you’ll find Understan
 
 User.destroy_all
 
-user1 = User.create :name => 'Hayley Petrov', :admin => true, :course => 'staff', :email => 'hayley@ga.co', :password => 'chicken', :password_confirmation => 'chicken'
+user1 = User.create :name => 'Hayley Petrov', :admin => true, :email => 'hayley@ga.co', :password => 'chicken', :password_confirmation => 'chicken'
 
-user2 = User.create :name => 'Daniel Ting', :admin => false, :course => 'WDI19', :email => 'dting@ga.co', :password => 'chicken', :password_confirmation => 'chicken'
+user2 = User.create :name => 'Daniel Ting', :admin => false, :email => 'dting@ga.co', :password => 'chicken', :password_confirmation => 'chicken'
 
-user3 = User.create :name => 'Christle Lee', :admin => false, :course => 'WDI19', :email => 'clee@ga.co', :password => 'chicken', :password_confirmation => 'chicken'
+user3 = User.create :name => 'Christle Lee', :admin => false, :email => 'clee@ga.co', :password => 'chicken', :password_confirmation => 'chicken'
 
-user4 = User.create :name => 'Daniele Peviani', :admin => false, :course => 'WDI19', :email => 'dpeviani@ga.co', :password => 'chicken', :password_confirmation => 'chicken'
+user4 = User.create :name => 'Daniele Peviani', :admin => false, :email => 'dpeviani@ga.co', :password => 'chicken', :password_confirmation => 'chicken'
 
 
 Reservation.destroy_all
