@@ -3,19 +3,49 @@
 </header>
 
 <div class="container">
-
-  <!-- CURRENT BORROWING BOOKS -->
   <section class="dashboard-section">
+
     <h2>Borrowed Books</h2>
+
     <% if @current_user.reservations.present? %>
+
+      <table class="borrowed-head">
+        <caption>Borrowed books</caption>
+        <thead>
+          <tr>
+            <th scope="col">Book title</th>
+            <th scope="col">Status</th>
+            <th scope="col">Due date</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+      </table>
+
       <% @current_user.reservations.each do |r| %>
-        <p>Book title: <%= r.book.title %></p>
-        <p>Status: <%= r.book.status %></p>
-        <p>Due date: <%= r.date_due %></p>
+
+      <table class="borrowed-body">
+        <tbody>
+          <tr>
+
+            <td data-label="Book title"><%= r.book.title %></td>
+            <td data-label="Status"><%= r.book.status %></td>
+
+            <% if r.date_due && Date.today >= r.date_due %>
+
+              <td data-label="Due date"><span class="overdue">Overdue<br><%= r.date_due %></span> </td>
+            <% else %>
+              <td data-label="Due date"><%= r.date_due %></td>
+            <% end %>
+            <td data-label="Action"><%= button_to 'Delete', reservation_path(r), :method => 'delete', :data => { :confirm => "Are you sure?" } %></b></td>
+          </tr>
+        </tbody>
+      </table>
       <% end %>
-    <% else %>
+      <% else %>
+
       <div class="no-books">You are not borrowing any books at the moment</div>
     <% end %>
+
   </section>
 
   <hr>
@@ -25,6 +55,7 @@
     <% if waitlist.present? %>
       <% waitlist.each do |book| %>
         <p>Book title: <%= books.where({isbn: book.isbn}).first.title %></p>
+        <b><%= button_to 'Delete', pending_items_path(book), :method => 'delete', :data => { :confirm => "Are you sure?" } %></b>
       <% end %>
     <% else %>
       <div class="no-books">No books in the waitlist</div>
@@ -59,7 +90,7 @@
   <% if params[:search] %>
   <script>
     <% @book_info.each do |b| %>
-      $('.container').append('<%= image_tag b[:picture] %></p><p><%= b[:info].title %></p><p><%= b[:info].isbn_13 %></p><p><%= b[:info].description %></p><p><%= b[:info].authors %></p><%= button_to 'Request', "/dashboard/request?isbn=#{b[:info].isbn_13}", method: :post %>')
+      $('.container').append('<div class="card-wrapper"><div class="card-top"><div class="card-image"><%= image_tag b[:picture] %></div><div class="card-left"><h2 class="title"><%= b[:info].title %></h2><h3><em><%= b[:info].authors %></em></h3><h3><%= b[:info].isbn_13 %></h3><div class="button"><%= button_to 'Request', "/dashboard/request?isbn=#{b[:info].isbn_13}", method: :post %></div></div></div><div class="description"><p><%= b[:info].description %></p></div></div>')
     <% end %>
   </script>
   <% end %>

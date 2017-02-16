@@ -8,10 +8,12 @@
     <div class="slider">
         <% @latest_books.each do |isbn, books| %>
           <div class="slider_item">
+
             <%= image_tag books.first.img_url %><div class="featured-info">
               <p><%= books.first.title %></p>
               <p><%= books.first.author %></p>
-              <%= render :partial => 'book_options', :locals => {:books => books} %>
+              <div id="carousel-footer">
+              <%= render :partial => 'book_options', :locals => {:books => books} %></div>
               <p><%= books.first.description %></p>
             </div>
           </div>

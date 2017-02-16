@@ -1,15 +1,56 @@
-<h1>Borrowed</h1>
-<!-- add user name -->
-<h2>All Borrowed Books</h2>
-<% @borrowed_books.each do |book| %>
-  <p><%= book.title %></p>
-  <% r = book.reservation.where.not(date_borrowed: nil).order(:date_borrowed).last %>
-  <% if r %>
-    <%= Date.today >= r.date_due %>
-    <p>User: <%= r.user_id %><%= @users.find(r.user_id).name %></p>
-    <p>borrowed date: <%= r.date_borrowed %></p>
-    <p>date due: <%= r.date_due %></p>
-    <%= button_to 'Returned', "/return?id=#{r.book_id}", method: :post %>
+<header class="main-header">
+  <h1>Borrowed</h1>
+</header>
 
-  <% end %>
-<% end %>
+<div class="container">
+  <section class="dashboard-section">
+
+
+
+    <table class="borrowed-head">
+      <caption>All borrowed books</caption>
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Book title</th>
+          <th scope="col">Date borrowed</th>
+          <th scope="col">Due date</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+    </table>
+
+    <% @borrowed_books.each do |book| %>
+
+    <table class="borrowed-body">
+      <tbody>
+        <tr>
+          <% r = book.reservation.where.not(date_borrowed: nil).order(:date_borrowed).last %>
+          <td scope="row" data-label="Name"><%= @users.find(r.user_id).name %></td>
+          <td data-label="Book title"><%= book.title %></td>
+
+          <td data-label="Date borrowed"><%= r.date_borrowed.to_s(:short) %></td>
+
+          <% if Date.today >= r.date_due %>
+
+          <td data-label="Due date"><span class="overdue">Overdue<br><%= r.date_due %></span> </td>
+          <td data-label="Action"><%= button_to 'Returned', "/return?id=#{r.book_id}", method: :post %></td>
+
+            <% else %>
+
+          <td data-label="Due date"><%= r.date_due %></td>
+
+          <td data-label="Action"><%= button_to 'Delivered', "/dashboard/reservation/borrowed?id=#{book.id}", method: :post %></td>
+        </tr>
+      </tbody>
+    </table>
+    <% end %>
+    <% end %>
+
+
+
+
+
+
+  </section>
+</div>

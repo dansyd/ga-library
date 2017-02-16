@@ -22,7 +22,7 @@
       <br><p class="out">You already reserved this book</p>
     <% else %>
       <% if sort_books_by_status(books).first.status == 'available' %>
-        <b><%= button_to 'Reserve', reservations_path(:reservation => {:action => 'create', :user_id => @current_user.id, :book_id => sort_books_by_status(books).first, :date_requested => Date.today.to_s}), :method=>:post %></b>
+        <b><%= button_to 'Reserve', reservations_path(:action => 'create', :book_id => sort_books_by_status(books).first), :method=>:post %></b>
 
       <% else %>
         <b><%= button_to 'Reserve', pending_items_path(:action => 'create', :user_id => @current_user.id, :isbn => sort_books_by_status(books).first.isbn, :date_requested => Time.now), :method=>:post %></b>

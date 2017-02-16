@@ -13,4 +13,10 @@ class PendingItemsController < ApplicationController
     redirect_to root_path
   end
 
+  def destroy
+    book = PendingItem.find params[:format]
+    book.destroy
+    redirect_to :back
+  end
+
 end

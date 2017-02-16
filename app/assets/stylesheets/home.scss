@@ -86,7 +86,7 @@
   	min-width: 280px;
     box-shadow: $card-boxshadow;
   }
-  .book-footer {
+  .book-footer, #carousel-footer {
   	margin-top: auto;
     p {
       color: #777777;
@@ -128,7 +128,46 @@
       }
     }
   }
+} //bookwrap
 
+#carousel-footer {
+  p {
+    color: #777777;
+    display: inline;
+    #available {
+      font-weight: bold;
+      color: #82CA9C;
+      text-transform: uppercase;
+      padding-left: 1em;
+    }
+    #unavailable {
+      @extend #available;
+      color: #F69679;
+    }
+  }
+  .out {
+    font-style: italic;
+  }
+  b {
+    float: right;
+  }
+  input[type="submit"] {
+    background-color: white;
+    color: $ga-red;
+    border: 1px solid $ga-red;
+    box-shadow: none;
 
-
+    &:hover {
+      background-color: $ga-red;
+      color: white;
+      cursor: pointer;
+    }
+    &:disabled {
+      cursor: not-allowed;
+      pointer-events: none;
+      border: 1px solid #c0c0c0;
+      color: #c0c0c0;
+      background-color: #ffffff;
+    }
+  }
 }
