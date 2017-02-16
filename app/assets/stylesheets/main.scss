@@ -96,6 +96,7 @@ input[type="text"] {
 .algolia-container {
   text-align: center;
   padding: $big-spacing;
+  max-width: 960px;
 }
 
 input[type="search"] {
