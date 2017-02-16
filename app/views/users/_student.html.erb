@@ -40,7 +40,11 @@
             <% else %>
               <td data-label="Due date"><%= r.date_due %></td>
             <% end %>
-            <td data-label="Action"><%= button_to 'Delete', reservation_path(r), :method => 'delete', :data => { :confirm => "Are you sure?" } %></b></td>
+            <% if !r.date_borrowed %>
+              <td data-label="Action"><%= button_to 'Delete', reservation_path(r), :method => 'delete', :data => { :confirm => "Are you sure?" } %></b></td>
+            <% else %>
+              <td data-label="Action"><b><%= button_to 'Delete', nil, :disabled => true %></b></td>
+            <% end %>
           </tr>
         </tbody>
       </table>

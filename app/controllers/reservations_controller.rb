@@ -20,7 +20,9 @@ class ReservationsController < ApplicationController
     # remove item from waitlist
     if next_item
       Reservation.create({book_id: params[:id], user_id: next_item.user_id, date_requested: next_item.date_requested})
-      Book.find(params[:id]).update({status: 'reserved'})
+      book = Book.find(params[:id])
+      UserMailer.book_now_available(next_item.user_id, book).deliver_now
+      book.update({status: 'reserved'})
       PendingItem.find(next_item.id).destroy
     else
       Book.find(params[:id]).update({status: 'available'})
