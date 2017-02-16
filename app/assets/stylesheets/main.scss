@@ -94,7 +94,7 @@ input[type="text"] {
 
 .algolia-container {
   text-align: center;
-  padding: $main-spacing;
+  padding: $big-spacing;
 }
 
 input[type="search"] {
@@ -107,6 +107,18 @@ input[type="search"] {
     outline: none;
   }
 
+}
+
+.flash {
+  color: $ga-green;
+  text-align: center;
+  font-weight: bold;
+  padding: 1em;
+}
+
+.error {
+  @extend .flash;
+  color: $ga-red;
 }
 
 
