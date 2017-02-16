@@ -26,6 +26,7 @@ class BooksController < ApplicationController
                           description: b.description,
                           img_url: b.image_link,
                           status: 'available'})
+      flash[:message] = "Successfully added (See me in books#create)"
     else
       flash[:error] = "Invalid ISBN"
     end
