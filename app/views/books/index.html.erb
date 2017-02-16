@@ -20,7 +20,7 @@
               <p><%= books.first.author %></p>
               <div id="carousel-footer">
               <%= render :partial => 'book_options', :locals => {:books => books} %></div>
-              <p><%= books.first.description %></p>
+              <p><%= truncate(books.first.description, length: 500,  separator: ' ') %></p>
             </div>
           </div>
         <% end %>
