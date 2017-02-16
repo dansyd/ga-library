@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
   has_many :requests
   has_many :reserved_books, :through => :reservations, :source => :book
   has_many :borrowed_books, -> { where status: 'borrowed' }, :through => :reservations, :source => :book
+  has_many :pending_books, -> { where status: 'reserved' }, :through => :reservations, :source => :book
   has_many :pending_items
 
 

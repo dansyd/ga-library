@@ -1,5 +1,5 @@
 <% if flash[:message].present? %>
-  <p class="flash"><%= flash[:message] %></p>
+  <p class="flash"><i class="fa fa-frown-o" aria-hidden="true"></i> </i> <%= flash[:message] %></p>
 <% end %>
 
 <table class="borrowed-head">
@@ -17,7 +17,11 @@
         <td><%= user.id %></td>
         <td><%= user.name %></td>
         <td><%= user.email %></td>
-        <td><%= button_to 'Delete User', user_path(user), method: :delete %></td>
+        <% if user.borrowed_books.length == 0 && user.pending_books.length == 0 %>
+          <td><%= button_to 'Delete User', user_path(user), method: :delete %></td>
+        <% else %>
+          <td><%= button_to 'Delete User', nil, disabled: true %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

@@ -16,7 +16,7 @@ body {
 .main-header {
   background-color: black;
   color: white;
-  padding: $main-spacing;
+  padding: 6em;
 }
 
 h1 {
@@ -29,6 +29,10 @@ h2 {
   font-size: 2.3em;
   text-align: center;
   color: #717A8D;
+}
+
+h3.quote {
+  text-align: center;
 }
 
 .container {
@@ -86,6 +90,35 @@ input[type="text"] {
   &:focus {
     outline: 2px solid #ffc107;
   }
+}
+
+.algolia-container {
+  text-align: center;
+  padding: $big-spacing;
+}
+
+input[type="search"] {
+  max-width: 400px;
+  font-size: 1em;
+  color: white;
+  background-color: lighten($ga-yellow, 9);
+  border-radius: 20px;
+  &:focus {
+    outline: none;
+  }
+
+}
+
+.flash {
+  color: $ga-green;
+  text-align: center;
+  font-weight: bold;
+  padding: 1em;
+}
+
+.error {
+  @extend .flash;
+  color: $ga-red;
 }
 
 

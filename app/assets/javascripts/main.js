@@ -19,6 +19,10 @@ $(document).ready(function(){
   //   this.classList.toggle("active");
   // });
 
+  setTimeout(function(){
+    $('.flash').remove();
+  }, 3000);
+
   $('.slider').slick({});
 
 });
