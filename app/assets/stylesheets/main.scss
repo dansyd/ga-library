@@ -17,7 +17,7 @@ body {
   background-color: black;
   color: white;
   padding: 6em;
-  box-shadow: 0 2px 10px 0 rgba(0, 0, 0,.2);
+  box-shadow: 0 2px 5px rgba(0, 0, 0,.5);
 }
 
 h1 {
@@ -42,7 +42,7 @@ h3.quote {
 }
 
 img {
-  box-shadow: 0 2px 20px 0 rgba(0, 0, 0,.2);
+  box-shadow: $card-boxshadow;
 }
 
 ul li {
