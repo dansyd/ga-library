@@ -4,7 +4,7 @@ class BooksController < ApplicationController
   before_action :check_if_admin, :only => [:borrowed]
 
   def index
-    @latest_books = Book.order(:created_at).group_by(&:isbn).first(3)
+    @latest_books = Book.order('created_at DESC').group_by(&:isbn).first(3)
     @alpha_books = Book.order(:title).group_by(&:isbn)
     @alpha_books_key = @alpha_books.keys.paginate(:page => params[:page], :per_page => 4)
   end

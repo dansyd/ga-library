@@ -35,15 +35,22 @@ class ReservationsController < ApplicationController
     reservation = Reservation.find params[:id]
     reservation.destroy
 
-    isbn = Book.find(reservation.book_id).isbn
+    book = Book.find reservation.book_id
+
+    if @current_user.admin
+      user = User.find reservation.user_id
+      UserMailer.reservation_cancelled(user, book).deliver_now
+    end
+
+    isbn = book.isbn
     next_item = PendingItem.where({isbn: isbn}).order(:date_requested)[0]
 
     if next_item
       Reservation.create({book_id: reservation.book_id, user_id: next_item.user_id, date_requested: next_item.date_requested})
-      Book.find(reservation.book_id).update({status: 'reserved'})
+      book.update({status: 'reserved'})
       PendingItem.find(next_item.id).destroy
     else
-      Book.find(reservation.book_id).update({status: 'available'})
+      book.update({status: 'available'})
     end
     flash[:message] = "Deletion Confirmed (See me in Reservations#destroy)"
     redirect_to :back
