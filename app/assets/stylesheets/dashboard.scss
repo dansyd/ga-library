@@ -5,7 +5,9 @@
   color: lightgrey;
   font-style: italic;
   margin-bottom: $small-spacing;
+  text-align: center;
 }
+
 
 .dashboard-section {
   padding: $main-spacing;
@@ -25,17 +27,7 @@ hr {
 //admin dashboard borrowing requests table /////////////////////////////
 
 
-.borrowed-head {
-  // border: 1px solid #ccc;
-  border-collapse: collapse;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  table-layout: fixed;
-
-}
-
-.borrowed-body {
+.borrowed-head, .borrowed-body {
   border-collapse: collapse;
   margin: 0;
   padding: 0;
