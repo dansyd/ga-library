@@ -21,23 +21,21 @@
               <th scope="col">Action</th>
             </tr>
           </thead>
-        </table>
-
-      <% reserved_books.each do |book| %>
-        <% r = book.reservation.where(date_borrowed: nil).order(:date_requested).first %>
-
-        <table class="borrowed-body">
           <tbody>
-            <tr>
-              <td scope="row" data-label="Name"><%= users.find(r.user_id).name %></td>
-              <td data-label="Book title"><%= book.title %></td>
-              <td data-label="ISBN"><%= book.isbn %></td>
-              <td data-label="Action"><%= button_to 'Delivered', "/dashboard/reservation/borrowed?id=#{book.id}", method: :post %><b><%= button_to 'Delete', reservation_path(r), :method => 'delete', :data => { :confirm => "Are you sure?" } %></b></td>
-            </tr>
+
+            <% reserved_books.each do |book| %>
+              <% r = book.reservation.where(date_borrowed: nil).order(:date_requested).first %>
+
+                  <tr>
+                    <td scope="row" data-label="Name"><%= users.find(r.user_id).name %></td>
+                    <td data-label="Book title"><%= link_to book.title, book %></td>
+                    <td data-label="ISBN"><%= book.isbn %></td>
+                    <td data-label="Action"><%= button_to 'Delivered', "/dashboard/reservation/borrowed?id=#{book.id}", method: :post %><b><%= button_to 'Delete', reservation_path(r), :method => 'delete', :data => { :confirm => "Are you sure?" } %></b></td>
+                  </tr>
+              <% end %>
           </tbody>
         </table>
 
-      <% end %>
     <% else %>
       <div class="no-books">There are no requests.</div>
     <% end %>
@@ -49,30 +47,27 @@
 <section class="dashboard-section">
   <h2>Waitlist</h2>
   <% if waitlist.present? %>
-    <% waitlist.each do |book| %>
-
-        <!-- <p><%= image_tag books.where({isbn: book.isbn}).first.img_url %></p> -->
-
-        <table class="borrowed-head">
-          <caption></caption>
-          <thead>
-            <tr>
-              <th scope="col">Name</th>
-              <th scope="col">Book title</th>
-              <th scope="col">ISBN</th>
-              <th scope="col">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td scope="row" data-label="Name"><%= users.find(book.user_id).name  %></td>
-              <td data-label="Book title"><%= books.where(isbn: book.isbn).first.title %></td>
-              <td data-label="ISBN"><%= book.isbn %></td>
-              <td data-label="Action"><b><%= button_to 'Delete', pending_items_path(book), :method => 'delete', :data => { :confirm => "Are you sure?" } %></b></td>
-            </tr>
-          </tbody>
-        </table>
-    <% end %>
+    <table class="borrowed-head">
+      <caption></caption>
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Book title</th>
+          <th scope="col">ISBN</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% waitlist.each do |book| %>
+          <tr>
+            <td scope="row" data-label="Name"><%= users.find(book.user_id).name  %></td>
+            <td data-label="Book title"><%= link_to books.where(isbn: book.isbn).first.title, books.where(isbn: book.isbn).first %></td>
+            <td data-label="ISBN"><%= book.isbn %></td>
+            <td data-label="Action"><b><%= button_to 'Delete', pending_items_path(book), :method => 'delete', :data => { :confirm => "Are you sure?" } %></b></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   <% else %>
     <div class="no-books">There are no books in the waitlist</div>
   <% end %>

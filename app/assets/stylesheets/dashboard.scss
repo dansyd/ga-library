@@ -129,19 +129,23 @@ table th {
 
 // admin dashboard waitlist ////////////////
 .card-container {
-  text-align: left;
+  padding: 1em;
+  text-align: center;
   max-width: 369px;
   margin: 0 auto;
   box-shadow: $card-boxshadow;
+  // display: flex;
 
-
-  .image-container {
-    display: inline-block;
-    width: 38%;
-    margin-left: 18px;
-  }
-  .info {
-    display: inline-block;
-    width: 50%;
-  }
+  // .image-container {
+  //   display: inline-block;
+  //   width: 38%;
+  //   margin-left: 18px;
+  // }
+  // .info {
+  //   display: inline-block;
+  //   width: 50%;
+  // }
+  // button, input[type="submit"] {
+  //   float: right;
+  // }
 }

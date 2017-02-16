@@ -14,7 +14,7 @@
     <% if @current_user.reservations.present? %>
 
       <table class="borrowed-head">
-        <caption>Borrowed books</caption>
+        <caption></caption>
         <thead>
           <tr>
             <th scope="col">Book title</th>
@@ -23,65 +23,47 @@
             <th scope="col">Delete</th>
           </tr>
         </thead>
-      </table>
-
-      <% @current_user.reservations.each do |r| %>
-
-      <table class="borrowed-body">
         <tbody>
-          <tr>
 
-            <td data-label="Book title"><%= r.book.title %></td>
-            <td data-label="Status"><%= r.book.status %></td>
+          <% @current_user.reservations.each do |r| %>
 
-            <% if r.date_due && Date.today >= r.date_due %>
+            <tr>
 
-              <td data-label="Due date"><span class="overdue">Overdue<br><%= r.date_due %></span> </td>
-            <% else %>
-              <td data-label="Due date"><%= r.date_due %></td>
-            <% end %>
-            <% if !r.date_borrowed %>
-              <td data-label="Action"><%= button_to 'Delete', reservation_path(r), :method => 'delete', :data => { :confirm => "Are you sure?" } %></b></td>
-            <% else %>
-              <td data-label="Action"><b><%= button_to 'Delete', nil, :disabled => true %></b></td>
-            <% end %>
-          </tr>
+              <td data-label="Book title"><%= link_to r.book.title, books.where({isbn: books.find(r.book_id).isbn}).first %></td>
+              <td data-label="Status"><%= r.book.status %></td>
+
+              <% if r.date_due && Date.today >= r.date_due %>
+                <td data-label="Due date"><span class="overdue">Overdue<br><%= r.date_due %></span> </td>
+              <% else %>
+                <td data-label="Due date"><%= r.date_due %></td>
+              <% end %>
+
+              <% if !r.date_borrowed %>
+                <td data-label="Action"><%= button_to 'Delete', reservation_path(r), :method => 'delete', :data => { :confirm => "Are you sure?" } %></b></td>
+              <% else %>
+                <td data-label="Action"><b><%= button_to 'Delete', nil, :disabled => true %></b></td>
+              <% end %>
+            </tr>
+          <% end %>
         </tbody>
       </table>
-      <% end %>
-      <% else %>
 
+    <% else %>
       <div class="no-books">You are not borrowing any books at the moment</div>
     <% end %>
-
   </section>
 
   <hr>
-
-  <!-- <section class="dashboard-section">
-    <h2>Waitlist</h2>
-    <% if waitlist.present? %>
-      <% waitlist.each do |book| %>
-        <p>Book title: <%= books.where({isbn: book.isbn}).first.title %></p>
-        <p><%= image_tag books.where({isbn: book.isbn}).first.img_url %></p>
-
-        <b><%= button_to 'Delete', pending_items_path(book), :method => 'delete', :data => { :confirm => "Are you sure?" } %></b>
-      <% end %>
-    <% else %>
-      <div class="no-books">No books in the waitlist</div>
-    <% end %>
-  </section> -->
-
 
   <section class="dashboard-section">
     <h2>Waitlist</h2>
     <% if waitlist.present? %>
       <% waitlist.each do |book| %>
         <div class="card-container">
-          <div class="image-container">
-            <p><%= image_tag books.where({isbn: book.isbn}).first.img_url %></p>
-          </div>
-          <div class="info">
+          <%= link_to books.where({isbn: book.isbn}).first do %>
+            <%= image_tag books.where({isbn: book.isbn}).first.img_url %>
+          <% end %>
+
             <p><%= books.where({isbn: book.isbn}).first.title %></p>
             <p>ISBN: <%= book.isbn %></p>
             <b><%= button_to 'Delete', pending_items_path(book), :method => 'delete', :data => { :confirm => "Are you sure?" } %></b>
@@ -101,8 +83,10 @@
     <% if @current_user.requests.present? %>
       <% @current_user.requests.each do |request| %>
         <% book = GoogleBooks.search(request.isbn).first %>
-        <p>Title: <%= book && book.title %></p>
-        <%= button_to 'Cancel Request', "/dashboard/request/cancel?id=#{request[0]}", method: :post %>
+        <div class="card-container">
+          <p>Title/ISBN: <%= (book && book.title)||request.isbn %></p>
+          <%= button_to 'Cancel Request', "/dashboard/request/cancel?id=#{request[0]}", method: :post %>
+        </div>
       <% end %>
     <% else %>
       <div class="no-books">You have not requested any new books</div>
