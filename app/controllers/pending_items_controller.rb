@@ -14,8 +14,11 @@ class PendingItemsController < ApplicationController
   end
 
   def destroy
-    book = PendingItem.find params[:format]
-    book.destroy
+    pending_item = PendingItem.find params[:format]
+    pending_item.destroy
+    user = User.find pending_item.user_id
+    book = Book.where({isbn: pending_item.isbn}).first
+    UserMailer.reservation_cancelled(user, book).deliver_now
     flash[:message] = "Request cancelled (See me in PendingItem#destroy)"
     redirect_to :back
   end

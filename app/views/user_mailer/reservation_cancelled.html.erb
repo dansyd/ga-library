@@ -1,6 +1,6 @@
-<h1>Due date reminder</h1>
+<h1>Reservation Cancelled</h1>
 <p>Hi <%= @user.name %>,</p>
-<p>The following book is due tomorrow, <%= (Date.today + 1).strftime("%A %e %B %Y") %>.</p>
+<p>Your reservation for the book below has been cancelled.</p>
 <br><br>
 <div class="book-details">
   <%= image_tag @book.img_url%>
@@ -8,4 +8,4 @@
   <p>Author: <%= @book.author %></p>
 </div>
 <br><br>
-<p>Please return the book in time to avoid penalty fees.</p>
+<p>Please see one of our staff members at the front desk for more information.</p>
