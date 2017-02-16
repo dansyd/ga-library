@@ -2,6 +2,10 @@
   <h1>Student Dashboard</h1>
 </header>
 
+<% if flash[:message].present? %>
+  <p class="flash"><%= flash[:message] %></p>
+<% end %>
+
 <div class="container">
   <section class="dashboard-section">
 
