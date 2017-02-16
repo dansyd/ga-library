@@ -55,6 +55,8 @@
     <% if waitlist.present? %>
       <% waitlist.each do |book| %>
         <p>Book title: <%= books.where({isbn: book.isbn}).first.title %></p>
+        <p><%= image_tag books.where({isbn: book.isbn}).first.img_url %></p>
+
         <b><%= button_to 'Delete', pending_items_path(book), :method => 'delete', :data => { :confirm => "Are you sure?" } %></b>
       <% end %>
     <% else %>

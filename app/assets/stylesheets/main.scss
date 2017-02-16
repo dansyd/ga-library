@@ -28,11 +28,16 @@ h2 {
   margin-bottom: $small-spacing;
   font-size: 2.3em;
   text-align: center;
+  color: #717A8D;
 }
 
 .container {
   margin: 0 auto;
   max-width: 960px;
+}
+
+img {
+  box-shadow: 0 2px 20px 0 rgba(0, 0, 0,.2);
 }
 
 ul li {
@@ -165,7 +170,6 @@ nav ul li ul li a {
 .nav-dropdown {
   position: absolute;
   z-index: 1;
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
   background: black;
   display: none;
 

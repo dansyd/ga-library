@@ -15,9 +15,9 @@ $(document).ready(function(){
     $("nav ul").toggle();
   });
   // Hamburger to X toggle
-  document.querySelector("#nav-toggle").addEventListener("click", function() {
-    this.classList.toggle("active");
-  });
+  // document.querySelector("#nav-toggle").addEventListener("click", function() {
+  //   this.classList.toggle("active");
+  // });
 
   $('.slider').slick({});
 

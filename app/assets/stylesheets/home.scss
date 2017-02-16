@@ -21,7 +21,6 @@
     display: inline-block;
     vertical-align: middle;
     width: 19%;
-    border: 1px solid red;
   }
   .slider {
     padding: 0 8em;
@@ -169,5 +168,20 @@
       color: #c0c0c0;
       background-color: #ffffff;
     }
+  }
+}
+
+.pagination {
+  text-align: center;
+  color: #717A8D;
+  padding: 1em;
+  word-spacing: 2em;
+  a {
+    color: #717A8D;
+    text-decoration: none;
+  }
+  em.current {
+    color: pink;
+    font-weight: bold;
   }
 }
