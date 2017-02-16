@@ -7,10 +7,46 @@
 <% end %>
 
 <div class="container">
-<section class="dashboard-section">
-    <h2>Borrowing Requests</h2>
-    <% if reserved_books.present? %>
+  <section class="dashboard-section">
+      <h2>Borrowing Requests</h2>
+      <% if reserved_books.present? %>
 
+          <table class="borrowed-head">
+            <caption></caption>
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Book title</th>
+                <th scope="col">ISBN</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+
+              <% reserved_books.each do |book| %>
+                <% r = book.reservations.where(date_borrowed: nil).order(:date_requested).first %>
+
+                  <tr>
+                    <td scope="row" data-label="Name"><%= users.find(r.user_id).name %></td>
+                    <td data-label="Book title"><%= link_to book.title, book %></td>
+                    <td data-label="ISBN"><%= book.isbn %></td>
+                    <td data-label="Action"><%= button_to 'Delivered', "/dashboard/reservation/borrowed?id=#{book.id}", method: :post %><b><%= button_to 'Delete', reservation_path(r), :method => 'delete', :data => { :confirm => "Are you sure?" } %></b></td>
+                  </tr>
+                <% end %>
+            </tbody>
+          </table>
+
+      <% else %>
+        <div class="no-books">There are no requests.</div>
+      <% end %>
+
+  </section>
+
+  <hr>
+
+  <section class="dashboard-section">
+    <h2>Waitlist</h2>
+      <% if waitlist.present? %>
         <table class="borrowed-head">
           <caption></caption>
           <thead>
@@ -22,88 +58,52 @@
             </tr>
           </thead>
           <tbody>
-            
-            <% reserved_books.each do |book| %>
-              <% r = book.reservations.where(date_borrowed: nil).order(:date_requested).first %>
-
-                  <tr>
-                    <td scope="row" data-label="Name"><%= users.find(r.user_id).name %></td>
-                    <td data-label="Book title"><%= link_to book.title, book %></td>
-                    <td data-label="ISBN"><%= book.isbn %></td>
-                    <td data-label="Action"><%= button_to 'Delivered', "/dashboard/reservation/borrowed?id=#{book.id}", method: :post %><b><%= button_to 'Delete', reservation_path(r), :method => 'delete', :data => { :confirm => "Are you sure?" } %></b></td>
-                  </tr>
-              <% end %>
+            <% waitlist.each do |book| %>
+              <tr>
+                <td scope="row" data-label="Name"><%= users.find(book.user_id).name  %></td>
+                <td data-label="Book title"><%= link_to books.where(isbn: book.isbn).first.title, books.where(isbn: book.isbn).first %></td>
+                <td data-label="ISBN"><%= book.isbn %></td>
+                <td data-label="Action"><b><%= button_to 'Delete', pending_items_path(book), :method => 'delete', :data => { :confirm => "Are you sure?" } %></b></td>
+              </tr>
+            <% end %>
           </tbody>
         </table>
+      <% else %>
+        <div class="no-books">There are no books in the waitlist</div>
+      <% end %>
+  </section>
 
-    <% else %>
-      <div class="no-books">There are no requests.</div>
-    <% end %>
+  <hr>
 
-</section>
+  <section class="dashboard-section">
+    <h2>New Book Requests</h2>
 
-<hr>
+        <ul class="bookwrap">
+          <% if requests.present? %>
+            <% requests.each do |request| %>
 
-<section class="dashboard-section">
-  <h2>Waitlist</h2>
-  <% if waitlist.present? %>
-    <table class="borrowed-head">
-      <caption></caption>
-      <thead>
-        <tr>
-          <th scope="col">Name</th>
-          <th scope="col">Book title</th>
-          <th scope="col">ISBN</th>
-          <th scope="col">Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% waitlist.each do |book| %>
-          <tr>
-            <td scope="row" data-label="Name"><%= users.find(book.user_id).name  %></td>
-            <td data-label="Book title"><%= link_to books.where(isbn: book.isbn).first.title, books.where(isbn: book.isbn).first %></td>
-            <td data-label="ISBN"><%= book.isbn %></td>
-            <td data-label="Action"><b><%= button_to 'Delete', pending_items_path(book), :method => 'delete', :data => { :confirm => "Are you sure?" } %></b></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  <% else %>
-    <div class="no-books">There are no books in the waitlist</div>
-  <% end %>
-</section>
+            <li>
+              <div class="book-image">
+                <%= image_tag request[:info].image_link %>
+              </div>
 
-<hr>
+              <div class="side">
+                <p><%= request[:info].title %></p>
+                <p><%= request[:info].authors %></p>
+              </div>
 
-<section class="dashboard-section">
-  <h2>New Book Requests</h2>
+              <div class="book-footer">
+                <%= button_to 'Add to wishlist', "/dashboard/wishlist/add?isbn=#{request[:isbn]}&id=#{request[:id]}", method: :post %>
+                <%= button_to 'Cancel Request', "/dashboard/request/cancel?id=#{request[:id]}", method: :post %>
 
-      <ul class="bookwrap">
-        <% if requests.present? %>
-          <% requests.each do |request| %>
-
-          <li>
-            <div class="book-image">
-              <%= image_tag request[:info].image_link %>
-            </div>
-
-            <div class="side">
-              <p><%= request[:info].title %></p>
-              <p><%= request[:info].authors %></p>
-            </div>
-
-            <div class="book-footer">
-              <%= button_to 'Add to wishlist', "/dashboard/wishlist/add?isbn=#{request[:isbn]}&id=#{request[:id]}", method: :post %>
-              <%= button_to 'Cancel Request', "/dashboard/request/cancel?id=#{request[:id]}", method: :post %>
-
-            </div>
-          </li>
+              </div>
+            </li>
           <% end %>
         </ul>
 
           <% else %>
             <div class="no-books">There are no requests for new books</div>
-        <% end %>
+          <% end %>
 
   </section>
 </div>

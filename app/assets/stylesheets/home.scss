@@ -17,10 +17,13 @@
 
 .featured {
   padding: $big-spacing 11em;
+  background: $ga-grey;
   img {
     display: inline-block;
     vertical-align: middle;
-    width: 19%;
+    width: 18%;
+    margin-left: 5px;
+    box-shadow: $card-boxshadow;
   }
   .slider {
     padding: 0 8em;
@@ -184,7 +187,7 @@
     text-decoration: none;
   }
   em.current {
-    color: pink;
+    color: $ga-yellow;
     font-weight: bold;
   }
 }
