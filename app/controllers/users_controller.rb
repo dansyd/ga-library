@@ -43,7 +43,11 @@ class UsersController < ApplicationController
       user.update user_params
       redirect_to root_path
     else
-      flash[:error] = "Incorrect Password"
+      if params[:user][:current_password] == ""
+        flash[:error] = "Please Enter the Current Password"
+      else
+        flash[:error] = "Incorrect Password"
+      end
       redirect_to :back
     end
   end
