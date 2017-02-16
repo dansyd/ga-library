@@ -7,6 +7,7 @@ class ReservationsController < ApplicationController
     book = Book.find params[:book_id]
     book.status = 'reserved'
     book.save
+    flash[:message] = "Reservation made (See me in Reservations#create)"
     redirect_to root_path
   end
 
@@ -24,7 +25,7 @@ class ReservationsController < ApplicationController
     else
       Book.find(params[:id]).update({status: 'available'})
     end
-    flash[:message] = "Return Confirmed"
+    flash[:message] = "Return Confirmed (See me in Reservations#return)"
     redirect_to :back
   end
 
@@ -42,6 +43,7 @@ class ReservationsController < ApplicationController
     else
       Book.find(reservation.book_id).update({status: 'available'})
     end
+    flash[:message] = "Deletion Confirmed (See me in Reservations#destroy)"
     redirect_to :back
   end
 

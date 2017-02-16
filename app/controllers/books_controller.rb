@@ -36,14 +36,14 @@ class BooksController < ApplicationController
   def deliver
     Book.find(params[:id]).update({status: 'borrowed'})
     Book.find(params[:id]).reservation.where({date_borrowed: nil}).first.update({date_borrowed: Time.now.to_s, date_due: (Date.today + 10).to_s})
-    flash[:message] = "Delivery confirmed"
+    flash[:message] = "Delivery confirmed (See me in Books#deliver)"
     redirect_to :back
   end
 
   def destroy
     book = Book.find params[:id]
     book.destroy
-    flash[:message] = "Book Deleted"
+    flash[:message] = "Book Deleted (See me in Books#destroy)"
     redirect_to books_path
   end
 
