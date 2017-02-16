@@ -8,11 +8,13 @@ class FavoritesController < ApplicationController
   def add_to_wishlist
     Favorite.create(isbn: params[:isbn])
     Request.find(params[:id]).destroy
+    flash[:message] = "added to wishlist (See me in favorites#add_to_wishlist)"
     redirect_to :back
   end
 
   def cancel_favorite
     Favorite.find(params[:id]).destroy
+    flash[:message] = "Item cancelled (See me in favorites#cancel_favorite)"
     redirect_to :back
   end
 end
