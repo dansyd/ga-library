@@ -6,4 +6,10 @@ class UserMailer < ApplicationMailer
     mail :to => @user.email, :subject => 'The book you reserved is now available', :cc => 'daniele.peviani@gmail.com'
   end
 
+  def one_day_till_due(user, book)
+    @user = user
+    @book = book
+    mail :to => @user.email, :subject => 'The book you borrowed is due tomorrow', :cc => 'daniele.peviani@gmail.com'
+  end
+
 end
