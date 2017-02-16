@@ -22,7 +22,7 @@ hr {
   margin-top: 2em;
 }
 
-//admin dashboard borrowed books table /////////////////////////////
+//admin dashboard borrowing requests table /////////////////////////////
 
 
 .borrowed-head {
@@ -42,11 +42,12 @@ hr {
   width: 100%;
   table-layout: fixed;
 
-  input[type="submit"] {
+  button, input[type="submit"] {
     background-color: white;
     color: $ga-red;
     border: 1px solid $ga-red;
     box-shadow: none;
+    margin-left: 0.5em;
 
     &:hover {
       background-color: $ga-red;
@@ -123,5 +124,24 @@ table th {
   }
   table td:last-child {
     border-bottom: 0;
+  }
+}
+
+// admin dashboard waitlist ////////////////
+.card-container {
+  text-align: left;
+  max-width: 369px;
+  margin: 0 auto;
+  box-shadow: $card-boxshadow;
+
+
+  .image-container {
+    display: inline-block;
+    width: 38%;
+    margin-left: 18px;
+  }
+  .info {
+    display: inline-block;
+    width: 50%;
   }
 }

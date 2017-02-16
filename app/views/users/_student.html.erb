@@ -54,7 +54,7 @@
 
   <hr>
 
-  <section class="dashboard-section">
+  <!-- <section class="dashboard-section">
     <h2>Waitlist</h2>
     <% if waitlist.present? %>
       <% waitlist.each do |book| %>
@@ -66,16 +66,38 @@
     <% else %>
       <div class="no-books">No books in the waitlist</div>
     <% end %>
+  </section> -->
+
+
+  <section class="dashboard-section">
+    <h2>Waitlist</h2>
+    <% if waitlist.present? %>
+      <% waitlist.each do |book| %>
+        <div class="card-container">
+          <div class="image-container">
+            <p><%= image_tag books.where({isbn: book.isbn}).first.img_url %></p>
+          </div>
+          <div class="info">
+            <p><%= books.where({isbn: book.isbn}).first.title %></p>
+            <p>ISBN: <%= book.isbn %></p>
+            <b><%= button_to 'Delete', pending_items_path(book), :method => 'delete', :data => { :confirm => "Are you sure?" } %></b>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="no-books">No books in the waitlist</div>
+    <% end %>
   </section>
+
 
   <hr>
 
   <section class="dashboard-section">
     <h2>New book requests</h2>
-    <% if @current_user.submitted_requests.present? %>
-      <% @current_user.submitted_requests.each do |request| %>
-        <p><%= request[1] %></p>
-        <!-- potential security risk by entering a different id -->
+    <% if @current_user.requests.present? %>
+      <% @current_user.requests.each do |request| %>
+        <% book = GoogleBooks.search(request.isbn).first %>
+        <p>Title: <%= book && book.title %></p>
         <%= button_to 'Cancel Request', "/dashboard/request/cancel?id=#{request[0]}", method: :post %>
       <% end %>
     <% else %>

@@ -50,10 +50,28 @@
   <h2>Waitlist</h2>
   <% if waitlist.present? %>
     <% waitlist.each do |book| %>
-      <p>User: <%= users.find(book.user_id).name  %>
-      <p>Book title: <%= books.where(isbn: book.isbn).first.title %></p>
-      <p>Book isbn: <%= book.isbn %></p>
-      <b><%= button_to 'Delete', pending_items_path(book), :method => 'delete', :data => { :confirm => "Are you sure?" } %></b>
+
+        <!-- <p><%= image_tag books.where({isbn: book.isbn}).first.img_url %></p> -->
+
+        <table class="borrowed-head">
+          <caption></caption>
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Book title</th>
+              <th scope="col">ISBN</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td scope="row" data-label="Name"><%= users.find(book.user_id).name  %></td>
+              <td data-label="Book title"><%= books.where(isbn: book.isbn).first.title %></td>
+              <td data-label="ISBN"><%= book.isbn %></td>
+              <td data-label="Action"><b><%= button_to 'Delete', pending_items_path(book), :method => 'delete', :data => { :confirm => "Are you sure?" } %></b></td>
+            </tr>
+          </tbody>
+        </table>
     <% end %>
   <% else %>
     <div class="no-books">There are no books in the waitlist</div>

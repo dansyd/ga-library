@@ -23,12 +23,6 @@ class User < ActiveRecord::Base
   has_secure_password
   validates :email, :presence => true, :uniqueness => true
 
-  def submitted_requests
-    requests.map do |r|
-      [r.id, GoogleBooks.search(r.isbn).first.title]
-    end
-  end
-
   def has_reserved_this(isbn)
     self.reserved_books.where({isbn: isbn}).exists? || self.pending_items.where({isbn: isbn}).exists?
   end
