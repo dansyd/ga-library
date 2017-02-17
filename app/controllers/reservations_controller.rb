@@ -1,5 +1,8 @@
 class ReservationsController < ApplicationController
 
+  before_action :check_if_logged_in, :only => [:create, :destroy]
+  before_action :check_if_admin, :only => [:return]
+
   def create
     reservation = Reservation.create({book_id: params[:book_id],
                                       user_id: @current_user.id,

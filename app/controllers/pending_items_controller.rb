@@ -1,5 +1,7 @@
 class PendingItemsController < ApplicationController
 
+  before_action :check_if_logged_in, :only => [:create, :destroy]
+
   def create
     pending_item = PendingItem.new
     pending_item.isbn = params['isbn']

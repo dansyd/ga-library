@@ -1,6 +1,6 @@
 class FavoritesController < ApplicationController
-  before_action :check_if_logged_in, :only => [:wishlist]
-  before_action :check_if_admin, :only => [:wishlist]
+
+  before_action :check_if_admin, :only => [:wishlist, :add_to_wishlist, :cancel_favorite]
 
   def wishlist
     @wishlist = Favorite.all.map do |f|
