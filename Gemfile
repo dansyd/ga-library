@@ -27,8 +27,6 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem "algoliasearch-rails"
 
-gem 'api-ai-ruby'
-
 gem 'will_paginate', '~> 3.1.0'
 
 gem 'font-awesome-sass', '~> 4.4.0'
