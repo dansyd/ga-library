@@ -23,6 +23,6 @@ $(document).ready(function(){
     $('.flash').remove();
   }, 3000);
 
-  $('.slider').slick({});
+  $('.slider').slick({ autoplay: true, autoplaySpeed: 5000 });
 
 });
