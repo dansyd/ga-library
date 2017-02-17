@@ -1,4 +1,7 @@
 class RequestsController < ApplicationController
+
+  before_action :check_if_logged_in, :only => [:make_request, :cancel_request]
+
   def make_request
     @request = Request.create(user_id: @current_user.id, isbn: params[:isbn])
     flash[:message] = "Request made"

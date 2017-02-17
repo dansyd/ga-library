@@ -1,7 +1,7 @@
 class BooksController < ApplicationController
 
   before_action :check_if_logged_in, :only => [:borrowed]
-  before_action :check_if_admin, :only => [:borrowed]
+  before_action :check_if_admin, :only => [:create, :deliver, :destroy]
 
   def index
     @latest_books = Book.order('created_at DESC').group_by(&:isbn).first(3)
