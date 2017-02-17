@@ -100,7 +100,7 @@ input[type="text"] {
 }
 
 input[type="search"] {
-  max-width: 400px;
+  max-width: 100%;
   font-size: 1em;
   color: white;
   background-color: lighten($ga-yellow, 9);
@@ -170,6 +170,7 @@ input[type="search"] {
   height: 70px;
   background: black;
   box-shadow: $card-boxshadow;
+  width: 100%;
 }
 
 .nav-container {
@@ -241,6 +242,24 @@ nav ul li ul li a {
 // }
 
 @media only screen and (max-width: 800px) {
+  .aa-input-container, .algolia-autocomplete {
+    width: 100%;
+  }
+  #aa-search-input {
+    min-width: 100%;
+  }
+  .aa-dropdown-menu {
+    max-width: 100%;
+  }
+  .featured {
+    padding: $small-spacing 1em;
+    .slider {
+      padding: 0 1em;
+    }
+    .container {
+      max-width: 80%;
+    }
+  }
   .nav-mobile {
     display: block;
   }
