@@ -69,9 +69,4 @@ class BooksController < ApplicationController
     render 'users/dashboard'
   end
 
-  private
-  def book_params
-    params.require(:book).permit(:isbn, :title, :author, :publisher, :date_published, :description, :img_url, :stauts)
-  end
-
 end

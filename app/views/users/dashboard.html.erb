@@ -1,5 +1,5 @@
 <% if @current_user.admin? %>
-  <%= render partial: "users/admin", locals: {reserved_books: @reserved_books, waitlist: @waitlist, requests: @requests, users: @users, books: @books} %>
+  <%= render partial: "users/admin" %>
 <% else %>
-  <%= render partial: "users/student", locals: {waitlist: @student_waitlist, books: @books} %>
+  <%= render partial: "users/student" %>
 <% end %>

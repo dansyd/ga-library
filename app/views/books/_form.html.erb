@@ -1,6 +1,6 @@
 <div class="container add-book">
 <% if flash[:error].present? %>
-  <p class="error"><i class="fa fa-frown-o" aria-hidden="true"></i> <%= flash[:error] %></p>
+  <p class="error"><i class="fa fa-frown-o" aria-hidden="true"></i><%= flash[:error] %></p>
 <% end %>
 
 <%= form_tag books_path, :method => "post" do |f| %>
