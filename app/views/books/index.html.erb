@@ -19,15 +19,13 @@
               <%= image_tag books.first.img_url %>
             <% end %>
             <div class="featured-info">
-              <div id="author">
                 <%= link_to books.first do %>
-                  <p><%= books.first.title %></p>
+                  <p id="title"><%= books.first.title %></p>
                 <% end %>
                 <p><%= books.first.author %></p>
-              </div>
-              <div id="carousel-footer">
-              <%= render :partial => 'book_options', :locals => {:books => books} %></div>
-              <p id="carousel-description"><%= truncate(books.first.description, length: 300,  separator: ' ') %></p>
+              <!-- <div id="carousel-footer"> -->
+              <!-- <%# render :partial => 'book_options', :locals => {:books => books} %></div> -->
+              <p id="carousel-description"><%= truncate(books.first.description, length: 400,  separator: ' ') %></p>
             </div>
           </div>
         <% end %>
