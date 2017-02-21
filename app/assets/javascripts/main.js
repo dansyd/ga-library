@@ -14,10 +14,7 @@ $(document).ready(function(){
   $("#nav-toggle").click(function() {
     $("nav ul").toggle();
   });
-  // Hamburger to X toggle
-  // document.querySelector("#nav-toggle").addEventListener("click", function() {
-  //   this.classList.toggle("active");
-  // });
+
 
   setTimeout(function(){
     $('.flash').remove();
