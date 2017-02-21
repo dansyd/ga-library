@@ -15,9 +15,7 @@
     <div class="slider">
         <% @latest_books.each do |isbn, books| %>
           <div class="slider_item">
-            <%= link_to books.first do %>
-              <%= image_tag books.first.img_url %>
-            <% end %>
+            <%= link_to image_tag(books.first.img_url), books.first %>
             <div class="featured-info">
                 <%= link_to books.first do %>
                   <p id="title"><%= books.first.title %></p>
