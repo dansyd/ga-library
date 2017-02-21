@@ -1,9 +1,9 @@
-<p id="copies">  <%= available_books(books).count %> / <%= pluralize(books.count, 'copy') %>
+<p id="copies"> <%= available_books(books).count %> / <%= pluralize(books.count, 'copy') %>
 <% if available_books(books).count > 0 %>
-  <span id="available">available<span></p>
-<%else %>
+  <span id="available">Available<span></p>
+<% else %>
   <p><span id="unavailable">Unavailable</span></p>
-<%end %>
+<% end %>
 <% if @current_user.present? %>
 
   <% if @current_user.admin %>

@@ -27,7 +27,7 @@ class BooksController < ApplicationController
                           img_url: b.image_link,
                           status: 'Available'})
       flash[:message] = "Successfully added"
-      Favorite.find(params[:id]).destroy
+      Favorite.find(params[:id]).destroy if params[:id]
     else
       flash[:error] = "Invalid ISBN"
     end
@@ -67,11 +67,6 @@ class BooksController < ApplicationController
       end
     end
     render 'users/dashboard'
-  end
-
-  private
-  def book_params
-    params.require(:book).permit(:isbn, :title, :author, :publisher, :date_published, :description, :img_url, :stauts)
   end
 
 end

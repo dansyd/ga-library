@@ -3,7 +3,7 @@
     <h1>Sign In</h1>
 
     <% if flash[:error].present? %>
-      <p class="error"><i class="fa fa-frown-o" aria-hidden="true"></i> <%= flash[:error] %></p>
+      <p class="error"><i class="fa fa-frown-o" aria-hidden="true"></i><%= flash[:error] %></p>
     <% end %>
 
     <%= form_tag login_path do %>

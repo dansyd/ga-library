@@ -24,15 +24,22 @@ class User < ActiveRecord::Base
   has_secure_password
   validates :email, :presence => true, :uniqueness => true
 
+  def get_borrowed_books
+    # includes both pending and borrowed books
+    self.reservations.where(returned: [nil, false])
+  end
+
   def has_reserved_this(isbn)
     book = self.pending_books.where({isbn: isbn}).last
     book && book.reservations.where({returned: nil}).exists? ||
     self.pending_items.where({isbn: isbn}).exists?
+    # Book.where(isbn: isbn).first.reservations.where({user_id: self.id, returned: nil}).length > 0
   end
 
   def has_borrowed_this(isbn)
     book = self.borrowed_books.where({isbn: isbn}).last
     book && book.reservations.where({returned: false}).exists?
+    # Book.where(isbn: isbn).first.reservations.where({user_id: self.id, returned: false}).length > 0
   end
 
 end

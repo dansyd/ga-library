@@ -5,7 +5,7 @@
 
 <div class="container">
   <% if flash[:message].present? %>
-    <p class="flash"><i class="fa fa-check-circle" aria-hidden="true"></i> <%= flash[:message] %></p>
+    <p class="flash"><i class="fa fa-check-circle" aria-hidden="true"></i><%= flash[:message] %></p>
   <% end %>
 </div>
 
@@ -43,8 +43,6 @@
         </svg>
     </div>
   </div>
-
-
 
   <ul class="bookwrap">
     <% @alpha_books_key.each do |isbn| %>
