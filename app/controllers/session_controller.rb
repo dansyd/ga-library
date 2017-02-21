@@ -1,4 +1,7 @@
 class SessionController < ApplicationController
+
+  before_action :check_if_logged_out, :only => [:new]
+
   def new
   end
 
